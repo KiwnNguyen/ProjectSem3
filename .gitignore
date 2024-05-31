@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Source/AccpSem3/.vs/AccpSem3
+/Source/AccpSem3/AccpSem3/obj
