@@ -4532,6 +4532,15 @@
     <Content Include="Views\Admin\AddExaminiation.cshtml" />
     <Content Include="Views\Admin\ViewDtExaminiation.cshtml" />
     <Content Include="Views\Home\ViewDtVacancy.cshtml" />
+    <Content Include="Views\Admin\PageAddVancacies.cshtml" />
+    <Content Include="Views\Admin\PageDetailMember.cshtml" />
+    <Content Include="Views\Admin\PageUpdateVancies.cshtml" />
+    <Content Include="Views\Admin\PageViewDetailDepart.cshtml" />
+    <Content Include="Views\Admin\PageViewDetailExa.cshtml" />
+    <Content Include="Views\Admin\PageViewDetails.cshtml" />
+    <Content Include="Views\Admin\PageViewQuestionOfExam.cshtml" />
+    <Content Include="Views\Admin\PageViewVancacies.cshtml" />
+    <Content Include="Views\Admin\ViewQuantityCandidate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
