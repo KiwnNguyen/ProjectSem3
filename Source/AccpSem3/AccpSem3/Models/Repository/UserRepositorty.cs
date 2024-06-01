@@ -23,12 +23,12 @@ namespace AccpSem3.Models.Repository
             }
         }
 
-        public List<UserView> GetAllUser()
+        public List<MemberView> GetAllUser()
         {
             try
             {
                 dbSem3Entities entities = new dbSem3Entities();
-                var q = entities.Members.Select(d => new UserView { id = d.id, fullname = d.fullname, email = d.email, pass_word = d.password, status = d.status, created_at = d.created_at, updated_at = d.updated_at, images = d.images }).ToList();
+                var q = entities.Members.Select(d => new MemberView { id = d.id, fullname = d.fullname, email = d.email, password = d.password, status = d.status, created_at = d.created_at, updated_at = d.updated_at, images = d.images }).ToList();
                 return q;
             }
             catch (Exception e)
@@ -37,30 +37,39 @@ namespace AccpSem3.Models.Repository
             }
             return null;
         }
-        public int InsertUser(UserView model)
+        public int InsertUser(MemberView model)
         {
             try
             {
                 if (model != null)
                 {
                     dbSem3Entities entities = new dbSem3Entities();
-                    if (model is UserView)
+                    if (model is MemberView)
                     {
-                        var modelUser = model as UserView;
+
+                        var modelUser = model as MemberView;
+
                         var AddUser = new Member
                         {
                             fullname = modelUser.fullname,
                             email = model.email,
-                            password = model.pass_word,
+                            password = model.password,
                             status = model.status,
+                            education_details = model.education_details,
+
+                            personal_details = model.personal_detail,
+                            work_experience = model.work_experience,
                             created_at = model.created_at,
                             updated_at = model.updated_at,
+                            phone = model.phone,
+                            cv = model.cv,
+                            images = model.images,
                         };
                         entities.Members.Add(AddUser);
                         entities.SaveChanges();
                         return 1;
                     }
-                   
+
                 }
 
             }
@@ -70,7 +79,7 @@ namespace AccpSem3.Models.Repository
             }
             return 0;
         }
-        public int UpdateImageUsr(UserView model)
+        public int UpdateImageUsr(MemberView model)
         {
             try
             {
@@ -78,7 +87,7 @@ namespace AccpSem3.Models.Repository
                 {
                     dbSem3Entities entities = new dbSem3Entities();
                     var result = entities.Members.Find(model.id);
-                    if(result != null)
+                    if (result != null)
                     {
                         result.images = model.images;
                         entities.SaveChanges();
@@ -93,7 +102,7 @@ namespace AccpSem3.Models.Repository
             }
             return 0;
         }
-        public UserView GetByIdUser(int id)
+        public MemberView GetByIdUser(int id)
         {
             try
             {
@@ -103,14 +112,15 @@ namespace AccpSem3.Models.Repository
                             select c
                     ).FirstOrDefault();
                 //Truyền giá trị từ class User sang class UserView
-                UserView userViewList = new UserView();
-                userViewList.images = user.images; 
+                MemberView userViewList = new MemberView();
+                userViewList.images = user.images;
                 return userViewList;
             }
-            catch (Exception e) { 
+            catch (Exception e)
+            {
             }
             return null;
         }
-      
+
     }
 }

@@ -217,8 +217,10 @@
     <Compile Include="Models\Entities\Vacancy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Linear\LinearRegressionModel.cs" />
     <Compile Include="Models\ModeView\AnswerView.cs" />
     <Compile Include="Models\ModeView\CadidateView.cs" />
+    <Compile Include="Models\ModeView\CategoryOfQuestionView.cs" />
     <Compile Include="Models\ModeView\DepartmentView.cs" />
     <Compile Include="Models\ModeView\ExamineView.cs" />
     <Compile Include="Models\ModeView\MemberView.cs" />
@@ -234,6 +236,7 @@
     <Compile Include="Models\Repository\DepartmentRepositories.cs" />
     <Compile Include="Models\Repository\ExamineRepositories.cs" />
     <Compile Include="Models\Repository\MemberRepositories.cs" />
+    <Compile Include="Models\Repository\QuestionRepositories.cs" />
     <Compile Include="Models\Repository\QuestionRepository.cs" />
     <Compile Include="Models\Repository\UserRepositorty.cs" />
     <Compile Include="Models\Repository\VacanciesRepositories.cs" />
