@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbSem3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbSem3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="id" />
@@ -43,6 +43,7 @@
           <Property Name="answer_of_cadidate" Type="text" />
           <Property Name="created_at" Type="datetime" />
           <Property Name="updated_at" Type="datetime" />
+          <Property Name="submit_cadidate_cadidate" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CategoryOfQuestion">
           <Key>
@@ -268,8 +269,7 @@
             <End Role="Vacancies" EntitySet="Vacancies" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbSem3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -314,6 +314,7 @@
           <Property Name="updated_at" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Cadidates__id_me__4D94879B" FromRole="Cadidates" ToRole="Member" />
           <NavigationProperty Name="Vacancy" Relationship="Self.FK__Cadidates__id_va__4E88ABD4" FromRole="Cadidates" ToRole="Vacancies" />
+          <Property Name="submit_cadidate_cadidate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CategoryOfQuestion">
           <Key>
@@ -586,6 +587,7 @@
           <EntitySetMapping Name="Cadidates">
             <EntityTypeMapping TypeName="dbSem3Model.Cadidate">
               <MappingFragment StoreEntitySet="Cadidates">
+                <ScalarProperty Name="submit_cadidate_cadidate" ColumnName="submit_cadidate_cadidate" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_member" ColumnName="id_member" />
                 <ScalarProperty Name="id_vacancy" ColumnName="id_vacancy" />
