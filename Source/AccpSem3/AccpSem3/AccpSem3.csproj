@@ -226,6 +226,7 @@
     <Compile Include="Models\ModeView\MemberView.cs" />
     <Compile Include="Models\ModeView\ModelJoin\QuesAndExam.cs" />
     <Compile Include="Models\ModeView\ModelJoin\QuestionJoin.cs" />
+    <Compile Include="Models\ModeView\ModelJoin\QuestionJoinView.cs" />
     <Compile Include="Models\ModeView\ModelJoin\ScoreResultCadi.cs" />
     <Compile Include="Models\ModeView\QuestionOfExamineView.cs" />
     <Compile Include="Models\ModeView\QuestionView.cs" />
