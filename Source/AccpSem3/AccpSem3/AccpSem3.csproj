@@ -4541,6 +4541,10 @@
     <Content Include="Views\Admin\PageViewQuestionOfExam.cshtml" />
     <Content Include="Views\Admin\PageViewVancacies.cshtml" />
     <Content Include="Views\Admin\ViewQuantityCandidate.cshtml" />
+    <Content Include="Views\Home\FormTestCadi.cshtml" />
+    <Content Include="Views\Home\PageHistoryCadi.cshtml" />
+    <Content Include="Views\Home\PageSendCv.cshtml" />
+    <Content Include="Views\Home\ResultCadi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

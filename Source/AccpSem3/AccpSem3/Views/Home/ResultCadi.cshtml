@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ResultCadi";
+}
+
+<h2>Chi tiết kết quả bài thi thử phỏng vừa rồi của bạn</h2>
+
+
+@if (HttpContext.Current.Session["ScoreCadi"] != null)
+{
+    <h3>Total Score: @HttpContext.Current.Session["ScoreCadi"]</h3>
+
+}
+<div>
+    <canvas id="myChart"></canvas>
+</div>
