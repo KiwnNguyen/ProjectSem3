@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "PageViewDetailExa";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    List<AccpSem3.Models.ModeView.ExamineView> ls = new List<AccpSem3.Models.ModeView.ExamineView>();
+    if (ViewBag.ExaDetail != null)
+    {
+        ls = ViewBag.ExaDetail;
+    }
+}
+<main class="content-wrapper">
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div class="mdc-card p-0">
+                    <h6 class="card-title card-padding pb-0">Examine Details</h6>
+                    <div class="table-responsive">
+                        <table class="table table-hoverable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Question Of Examination</th>
+                                    <th>Create Date</th>
+                                    <th>Update Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (AccpSem3.Models.ModeView.ExamineView item in ls)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td>@item.title</td>
+                                        <td style="text-align: center">
+                                            <a href="@Url.Action("PageViewQuestionOfExam","Admin",new {id = item.id})"><i class="fas fa-eye"></i></a>
+                                        </td>
+                                        <td>@item.created_at</td>
+                                        <td>@item.updated_at</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">CV Cadidate</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <iframe id="cv-iframe" src="" width="465" height="500"></iframe>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+
+
