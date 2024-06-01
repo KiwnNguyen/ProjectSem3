@@ -9,6 +9,8 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using AccpSem3.Models.ModeView;
+using AccpSem3.Models.Encryption;
+using AccpSem3.Models.Repository;
 
 namespace AccpSem3.Controllers
 {
@@ -21,27 +23,22 @@ namespace AccpSem3.Controllers
         }
         [AllowAnonymous]
         [HttpGet]
-
         public ActionResult PageLogin(string returnUrl)
         {
-            UserView modelUser = new UserView();
+            MemberView modelUser = new MemberView();
             try
             {
-             
-                if(User.IsInRole("USER"))
+                if (User.IsInRole("USER"))
                 {
                     string r = returnUrl;
-                    if (r.Equals("/Admin/Index")) 
+                    if (r != null)
                     {
-                        return RedirectToAction("Page404", "Home");
+                        if (r.Equals("/Admin/Index"))
+                        {
+                            return RedirectToAction("Page404", "Home");
+                        }
                     }
                 }
-                    
-                //if (this.Request.IsAuthenticated)
-                //{
-                //    return this.RedirectToLocal(returnUrl);
-                //}
-                //return View();
             }
             catch (Exception)
             {
@@ -58,14 +55,11 @@ namespace AccpSem3.Controllers
 
                     if (returnUrl == "/Admin/Index")
                     {
-                        
-                        
                         return RedirectToAction("Index", "Admin");
                     }
                     if (returnUrl == "/Home/Index")
                     {
                         return RedirectToAction("Index", "Home");
-
                     }
                 }
             }
@@ -82,8 +76,11 @@ namespace AccpSem3.Controllers
             var ctx = Request.GetOwinContext();
             var authenticationManger = ctx.Authentication;
             authenticationManger.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-
-            return RedirectToAction("PageLogin", "Home");
+            Session.Clear();
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            Response.Headers.Add("Cache-Control", "no-store");
+            return Content("<script>window.location.href='/Login/PageLogin';</script>");
         }
 
         [AllowAnonymous]
@@ -93,39 +90,85 @@ namespace AccpSem3.Controllers
             // Xử lý logic xác thực người dùng
             string username = Request.Params["Email"];
             string password = Request.Params["Pass"];
+
+
+            //string password = Models.Encryption.PasswordHasher.HashPassword(pass);
+
+            string t1 = "";
             try
             {
                 dbSem3Entities product = new dbSem3Entities();
                 //if (ModelState.IsValid)
                 if (username != null && password != null)
                 {
-                    var loginInfo = product.Members.Where(x => x.email == username && x.password == password)
+                    //Search email for Member
+                    var loginInfo = product.Members.Where(x => x.email == username)
                         .ToList();
-
+                    //Search email for Admin
                     var loginInfoAdmin = product.Admins.Where(y => y.email == username && y.password == password)
+                        .ToList();
+                    //Search email for Cadidate
+                    var loginInfoCadidate = product.Cadidates.Where(z => z.username == username)
                         .ToList();
                     if (loginInfo != null && loginInfo.Count() > 0)
                     {
                         var logindetails = loginInfo.First();
-                        string role1 = "USER";
-                        HttpContext.Session["AccountName"] = logindetails.email;
-                        HttpContext.Session["ImageAccount"] = logindetails.images;
-                        HttpContext.Session["IdAccountUser"] = logindetails.id;
-                        this.SignInUser(logindetails.email, false, role1);
+                        string hashedPassword = logindetails.password;
+                        //passwordHasher1
+                        string DecodePass = PasswordHasher1.DecodeFrom64(logindetails.password);
+                        if (password.Equals(DecodePass))
+                        {
 
-                        returnUrl = "/Home/Index";
-                        return this.RedirectToLocal(returnUrl);
+                            string role1 = "USER";
+                            HttpContext.Session["AccountName"] = logindetails.email;
+                            HttpContext.Session["ImageAccount"] = logindetails.images;
+                            string id = logindetails.id.ToString();
+                            HttpContext.Session["IdAccountUser"] = id;
+                            HttpContext.Session["EmailAccountUser"] = logindetails.email;
+
+
+                            this.SignInUser(logindetails.email, false, role1);
+                            returnUrl = "/Home/Index";
+                            return this.RedirectToLocal(returnUrl);
+                        }
                     }
                     else if (loginInfoAdmin != null && loginInfoAdmin.Count() > 0)
                     {
 
                         var logindetalsAdmin = loginInfoAdmin.First();
-                        //string role = logindetalsAdmin.role;
                         string role1 = "ADMIN";
                         HttpContext.Session["AccountNameAdmin"] = logindetalsAdmin.email;
                         this.SignInUser(logindetalsAdmin.email, false, role1);
                         returnUrl = "/Admin/Index";
                         return this.RedirectToLocal(returnUrl);
+                    }
+                    else if (loginInfoCadidate != null && loginInfoCadidate.Count() > 0)
+                    {
+                        var logindetalsCadidate = loginInfoCadidate.First();
+                        string DecoderPass = PasswordHasher1.DecodeFrom64(logindetalsCadidate.password);
+                        if (DecoderPass.Equals(password))
+                        {
+                            string role1 = "CADIDATE";
+                            HttpContext.Session["AccountNameCadidate"] = logindetalsCadidate.username;
+
+                            List<CadidateView> ls = CandidateRepositories.Instance.GetByIdCadi(logindetalsCadidate.id);
+                            int? status_t = 0;
+                            int id_cadi = 0;
+                            foreach (CadidateView item in ls)
+                            {
+                                status_t = item.status;
+                                id_cadi = item.id;
+                            }
+                            if (status_t == 3)
+                            {
+                                CandidateRepositories.Instance.StatusCadiOne(id_cadi);
+                            }
+                            string id_stats = logindetalsCadidate.id.ToString();
+                            HttpContext.Session["idCadi"] = id_stats;
+                            this.SignInUser(logindetalsCadidate.username, false, role1);
+                            returnUrl = "/Home/Index";
+                            return this.RedirectToLocal(returnUrl);
+                        }
                     }
                     else
                     {
@@ -137,7 +180,7 @@ namespace AccpSem3.Controllers
             {
                 Console.Write(e);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("PageLogin", "Login");
         }
         private void SignInUser(string email, bool isPeristent, string roles)
         {
