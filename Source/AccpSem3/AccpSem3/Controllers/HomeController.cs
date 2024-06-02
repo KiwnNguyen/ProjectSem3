@@ -448,11 +448,9 @@ namespace AccpSem3.Controllers
                     {
                         //Send Info Candidate with Vacacies
                         string idvan = Request.Params["idvan"];
-
                         string emailMem = Request.Params["email"];
                         string concert_person = Request.Params["concert_person"];
                         string emailMem1 = HttpContext.Session["EmailAccountUser"] as string;
-
                         MemberView modelMem = MemberRepositories.Instance.GetEmailMembers(emailMem);
                         model.id_member = modelMem.id;
                         model.id_vacancy = int.Parse(idvan);

@@ -8,3 +8,7 @@
 /Source/AccpSem3/AccpSem3/bin/AccpSem3.dll
 /Source/AccpSem3/AccpSem3/bin/AccpSem3.dll.config
 /Source/AccpSem3/AccpSem3/Web.config
+*.config
+/Source/AccpSem3/AccpSem3/Web.Debug.config
+/Source/AccpSem3/AccpSem3/bin/AccpSem3.pdb
+/Source/AccpSem3/AccpSem3/.vs

@@ -22,7 +22,6 @@ namespace AccpSem3.Controllers
         //DAT DO
         public ActionResult Index()
         {
-            
             try
             {
                 var ls = VacanciesRepositories.Instance.GetAll();

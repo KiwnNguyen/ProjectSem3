@@ -16,7 +16,7 @@
 
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card p-2">
-                    <h6 class="card-title card-padding pb-0">Department Detail</h6>
+                    <h6 class="card-title card-padding pb-0">Communication Cadidate</h6>
                     <div class="table-responsive">
                         <table class="table table-hoverable">
                             <thead>
@@ -28,7 +28,6 @@
                                     <th style="text-align: center">Create Date</th>
                                     <th style="text-align: center">Update Date</th>
                                     <th style="text-align: center">View Details</th>
-                                    <th style="text-align: center">Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,11 +43,6 @@
                                         <td style="text-align: center">
                                             <a class="button-with-icon" id="" href="@Url.Action("PageDetailMember","Admin",new {id = item.cadidate.id_member})">
                                                 <i class="fa-regular fa-eye"></i> <!-- Biểu tượng cho trạng thái Bật -->
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="button-with-icon" id="" href="@Url.Action("PageUpdateCadi","Admin",new {id = item.cadidate.id})">
-                                                <i class="fa-solid fa-pen-to-square"></i> <!-- Biểu tượng cho trạng thái Bật -->
                                             </a>
                                         </td>
                                     </tr>
