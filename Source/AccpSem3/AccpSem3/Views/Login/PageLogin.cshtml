@@ -1,4 +1,4 @@
-﻿@model AccpSem3.Models.ModeView.UserView
+﻿@model AccpSem3.Models.ModeView.MemberView
 @{
     ViewBag.Title = "PageLogin";
 }
@@ -34,8 +34,12 @@
                                 <form action="/Login/PageLogin1" class="aa-login-form" method="post">
                                     <label for="">Username or Email address<span>*</span></label>
                                     <input type="text" placeholder="Username or email" name="Email">
+                                    <hr class="class=" m-4" />
                                     <label for="">Password<span>*</span></label>
                                     <input type="password" placeholder="Password" name="Pass">
+                                    <br />
+                                    <br />
+
                                     <button type="submit" class="aa-browse-btn">Login</button>
                                     <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
                                     <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
@@ -61,8 +65,22 @@
                                     <input type="text" placeholder="Full Your Name" name="fullname" value="@Model.fullname">
                                     <label for="">Email<span>*</span></label>
                                     <input type="text" placeholder="Email" value="@Model.email" name="email">
+                                    <hr class="m-4" />
                                     <label for="">Password<span>*</span></label>
-                                    <input type="password" placeholder="Password" value="@Model.pass_word" name="pass_word">
+                                    <input type="password" placeholder="Password" value="@Model.password" name="password">
+                                    <label for="">Personal</label>
+                                    <input type="text" placeholder="" value="@Model.personal_detail" name="personal_detail">
+                                    <hr class="m-4" />
+                                    <label for="">Education<span></span></label>
+                                    <input type="text" placeholder="" value="@Model.education_details" name="education_details">
+                                    <hr class="m-4" />
+                                    <label for="">Work experience<span></span></label>
+                                    <input type="text" placeholder="" value="@Model.work_experience" name="work_experience">
+                                    <hr class="m-4" />
+                                    <label for="">Phone</label>
+                                    <input type="number" placeholder="" value="@Model.phone" name="phone">
+                                    <br />
+                                    <br />
                                     <button type="submit" class="aa-browse-btn">Register</button>
                                 </form>
                             </div>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbSem3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="dbSem3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="id" />
@@ -40,7 +40,7 @@
           <Property Name="username" Type="nvarchar" MaxLength="255" />
           <Property Name="password" Type="nvarchar" MaxLength="255" />
           <Property Name="score" Type="int" />
-          <Property Name="answer_of_cadidate" Type="text" />
+          <Property Name="answer_of_cadidate" Type="nvarchar(max)" />
           <Property Name="created_at" Type="datetime" />
           <Property Name="updated_at" Type="datetime" />
           <Property Name="submit_cadidate_cadidate" Type="nvarchar(max)" />
@@ -129,7 +129,7 @@
           <Property Name="jobnature" Type="varchar" MaxLength="255" />
           <Property Name="featured" Type="int" />
         </EntityType>
-        <Association Name="FK__Answer__id_quest__4BAC3F29">
+        <Association Name="FK__Answer__id_quest__5DCAEF64">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
           <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,7 +141,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cadidates__id_me__4D94879B">
+        <Association Name="FK__Cadidates__id_me__5FB337D6">
           <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
           <End Role="Cadidates" Type="Self.Cadidates" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,7 +153,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cadidates__id_va__4E88ABD4">
+        <Association Name="FK__Cadidates__id_va__60A75C0F">
           <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="0..1" />
           <End Role="Cadidates" Type="Self.Cadidates" Multiplicity="*" />
           <ReferentialConstraint>
@@ -165,7 +165,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Question__id_cat__4AB81AF0">
+        <Association Name="FK__Question__id_cat__5CD6CB2B">
           <End Role="CategoryOfQuestion" Type="Self.CategoryOfQuestion" Multiplicity="0..1" />
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
@@ -177,7 +177,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__QuestionO__id_ex__49C3F6B7">
+        <Association Name="FK__QuestionO__id_ex__5BE2A6F2">
           <End Role="Examination" Type="Self.Examination" Multiplicity="0..1" />
           <End Role="QuestionOfExamination" Type="Self.QuestionOfExamination" Multiplicity="*" />
           <ReferentialConstraint>
@@ -189,7 +189,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__QuestionO__id_qu__4F7CD00D">
+        <Association Name="FK__QuestionO__id_qu__619B8048">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
           <End Role="QuestionOfExamination" Type="Self.QuestionOfExamination" Multiplicity="*" />
           <ReferentialConstraint>
@@ -201,7 +201,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Vacancies__id_de__4CA06362">
+        <Association Name="FK__Vacancies__id_de__5EBF139D">
           <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
           <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
           <ReferentialConstraint>
@@ -213,7 +213,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Vacancies__id_ex__48CFD27E">
+        <Association Name="FK__Vacancies__id_ex__5AEE82B9">
           <End Role="Examination" Type="Self.Examination" Multiplicity="0..1" />
           <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
           <ReferentialConstraint>
@@ -236,40 +236,41 @@
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionOfExamination" EntityType="Self.QuestionOfExamination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacancies" EntityType="Self.Vacancies" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Answer__id_quest__4BAC3F29" Association="Self.FK__Answer__id_quest__4BAC3F29">
+          <AssociationSet Name="FK__Answer__id_quest__5DCAEF64" Association="Self.FK__Answer__id_quest__5DCAEF64">
             <End Role="Question" EntitySet="Question" />
             <End Role="Answer" EntitySet="Answer" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cadidates__id_me__4D94879B" Association="Self.FK__Cadidates__id_me__4D94879B">
+          <AssociationSet Name="FK__Cadidates__id_me__5FB337D6" Association="Self.FK__Cadidates__id_me__5FB337D6">
             <End Role="Member" EntitySet="Member" />
             <End Role="Cadidates" EntitySet="Cadidates" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cadidates__id_va__4E88ABD4" Association="Self.FK__Cadidates__id_va__4E88ABD4">
+          <AssociationSet Name="FK__Cadidates__id_va__60A75C0F" Association="Self.FK__Cadidates__id_va__60A75C0F">
             <End Role="Vacancies" EntitySet="Vacancies" />
             <End Role="Cadidates" EntitySet="Cadidates" />
           </AssociationSet>
-          <AssociationSet Name="FK__Question__id_cat__4AB81AF0" Association="Self.FK__Question__id_cat__4AB81AF0">
+          <AssociationSet Name="FK__Question__id_cat__5CD6CB2B" Association="Self.FK__Question__id_cat__5CD6CB2B">
             <End Role="CategoryOfQuestion" EntitySet="CategoryOfQuestion" />
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
-          <AssociationSet Name="FK__QuestionO__id_ex__49C3F6B7" Association="Self.FK__QuestionO__id_ex__49C3F6B7">
+          <AssociationSet Name="FK__QuestionO__id_ex__5BE2A6F2" Association="Self.FK__QuestionO__id_ex__5BE2A6F2">
             <End Role="Examination" EntitySet="Examination" />
             <End Role="QuestionOfExamination" EntitySet="QuestionOfExamination" />
           </AssociationSet>
-          <AssociationSet Name="FK__QuestionO__id_qu__4F7CD00D" Association="Self.FK__QuestionO__id_qu__4F7CD00D">
+          <AssociationSet Name="FK__QuestionO__id_qu__619B8048" Association="Self.FK__QuestionO__id_qu__619B8048">
             <End Role="Question" EntitySet="Question" />
             <End Role="QuestionOfExamination" EntitySet="QuestionOfExamination" />
           </AssociationSet>
-          <AssociationSet Name="FK__Vacancies__id_de__4CA06362" Association="Self.FK__Vacancies__id_de__4CA06362">
+          <AssociationSet Name="FK__Vacancies__id_de__5EBF139D" Association="Self.FK__Vacancies__id_de__5EBF139D">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Vacancies" EntitySet="Vacancies" />
           </AssociationSet>
-          <AssociationSet Name="FK__Vacancies__id_ex__48CFD27E" Association="Self.FK__Vacancies__id_ex__48CFD27E">
+          <AssociationSet Name="FK__Vacancies__id_ex__5AEE82B9" Association="Self.FK__Vacancies__id_ex__5AEE82B9">
             <End Role="Examination" EntitySet="Examination" />
             <End Role="Vacancies" EntitySet="Vacancies" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbSem3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -295,7 +296,7 @@
           <Property Name="is_correct" Type="Int32" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Question" Relationship="Self.FK__Answer__id_quest__4BAC3F29" FromRole="Answer" ToRole="Question" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__Answer__id_quest__5DCAEF64" FromRole="Answer" ToRole="Question" />
         </EntityType>
         <EntityType Name="Cadidate">
           <Key>
@@ -309,12 +310,12 @@
           <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="score" Type="Int32" />
-          <Property Name="answer_of_cadidate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="answer_of_cadidate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Member" Relationship="Self.FK__Cadidates__id_me__4D94879B" FromRole="Cadidates" ToRole="Member" />
-          <NavigationProperty Name="Vacancy" Relationship="Self.FK__Cadidates__id_va__4E88ABD4" FromRole="Cadidates" ToRole="Vacancies" />
           <Property Name="submit_cadidate_cadidate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Member" Relationship="Self.FK__Cadidates__id_me__5FB337D6" FromRole="Cadidates" ToRole="Member" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK__Cadidates__id_va__60A75C0F" FromRole="Cadidates" ToRole="Vacancies" />
         </EntityType>
         <EntityType Name="CategoryOfQuestion">
           <Key>
@@ -326,7 +327,7 @@
           <Property Name="status" Type="Int32" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Questions" Relationship="Self.FK__Question__id_cat__4AB81AF0" FromRole="CategoryOfQuestion" ToRole="Question" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK__Question__id_cat__5CD6CB2B" FromRole="CategoryOfQuestion" ToRole="Question" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -334,7 +335,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Dname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Vacancies" Relationship="Self.FK__Vacancies__id_de__4CA06362" FromRole="Departments" ToRole="Vacancies" />
+          <NavigationProperty Name="Vacancies" Relationship="Self.FK__Vacancies__id_de__5EBF139D" FromRole="Departments" ToRole="Vacancies" />
         </EntityType>
         <EntityType Name="Examination">
           <Key>
@@ -344,8 +345,8 @@
           <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="QuestionOfExaminations" Relationship="Self.FK__QuestionO__id_ex__49C3F6B7" FromRole="Examination" ToRole="QuestionOfExamination" />
-          <NavigationProperty Name="Vacancies" Relationship="Self.FK__Vacancies__id_ex__48CFD27E" FromRole="Examination" ToRole="Vacancies" />
+          <NavigationProperty Name="QuestionOfExaminations" Relationship="Self.FK__QuestionO__id_ex__5BE2A6F2" FromRole="Examination" ToRole="QuestionOfExamination" />
+          <NavigationProperty Name="Vacancies" Relationship="Self.FK__Vacancies__id_ex__5AEE82B9" FromRole="Examination" ToRole="Vacancies" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -364,7 +365,7 @@
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
           <Property Name="images" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cadidates" Relationship="Self.FK__Cadidates__id_me__4D94879B" FromRole="Member" ToRole="Cadidates" />
+          <NavigationProperty Name="Cadidates" Relationship="Self.FK__Cadidates__id_me__5FB337D6" FromRole="Member" ToRole="Cadidates" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -376,9 +377,9 @@
           <Property Name="status" Type="Int32" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Answers" Relationship="Self.FK__Answer__id_quest__4BAC3F29" FromRole="Question" ToRole="Answer" />
-          <NavigationProperty Name="CategoryOfQuestion" Relationship="Self.FK__Question__id_cat__4AB81AF0" FromRole="Question" ToRole="CategoryOfQuestion" />
-          <NavigationProperty Name="QuestionOfExaminations" Relationship="Self.FK__QuestionO__id_qu__4F7CD00D" FromRole="Question" ToRole="QuestionOfExamination" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK__Answer__id_quest__5DCAEF64" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="CategoryOfQuestion" Relationship="Self.FK__Question__id_cat__5CD6CB2B" FromRole="Question" ToRole="CategoryOfQuestion" />
+          <NavigationProperty Name="QuestionOfExaminations" Relationship="Self.FK__QuestionO__id_qu__619B8048" FromRole="Question" ToRole="QuestionOfExamination" />
         </EntityType>
         <EntityType Name="QuestionOfExamination">
           <Key>
@@ -389,8 +390,8 @@
           <Property Name="id_examination" Type="Int32" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Examination" Relationship="Self.FK__QuestionO__id_ex__49C3F6B7" FromRole="QuestionOfExamination" ToRole="Examination" />
-          <NavigationProperty Name="Question" Relationship="Self.FK__QuestionO__id_qu__4F7CD00D" FromRole="QuestionOfExamination" ToRole="Question" />
+          <NavigationProperty Name="Examination" Relationship="Self.FK__QuestionO__id_ex__5BE2A6F2" FromRole="QuestionOfExamination" ToRole="Examination" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__QuestionO__id_qu__619B8048" FromRole="QuestionOfExamination" ToRole="Question" />
         </EntityType>
         <EntityType Name="Vacancy">
           <Key>
@@ -409,11 +410,11 @@
           <Property Name="dateline" Type="DateTime" Precision="0" />
           <Property Name="jobnature" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="featured" Type="Int32" />
-          <NavigationProperty Name="Cadidates" Relationship="Self.FK__Cadidates__id_va__4E88ABD4" FromRole="Vacancies" ToRole="Cadidates" />
-          <NavigationProperty Name="Department" Relationship="Self.FK__Vacancies__id_de__4CA06362" FromRole="Vacancies" ToRole="Departments" />
-          <NavigationProperty Name="Examination" Relationship="Self.FK__Vacancies__id_ex__48CFD27E" FromRole="Vacancies" ToRole="Examination" />
+          <NavigationProperty Name="Cadidates" Relationship="Self.FK__Cadidates__id_va__60A75C0F" FromRole="Vacancies" ToRole="Cadidates" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Vacancies__id_de__5EBF139D" FromRole="Vacancies" ToRole="Departments" />
+          <NavigationProperty Name="Examination" Relationship="Self.FK__Vacancies__id_ex__5AEE82B9" FromRole="Vacancies" ToRole="Examination" />
         </EntityType>
-        <Association Name="FK__Answer__id_quest__4BAC3F29">
+        <Association Name="FK__Answer__id_quest__5DCAEF64">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
           <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -425,7 +426,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cadidates__id_me__4D94879B">
+        <Association Name="FK__Cadidates__id_me__5FB337D6">
           <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
           <End Role="Cadidates" Type="Self.Cadidate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -437,7 +438,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cadidates__id_va__4E88ABD4">
+        <Association Name="FK__Cadidates__id_va__60A75C0F">
           <End Role="Vacancies" Type="Self.Vacancy" Multiplicity="0..1" />
           <End Role="Cadidates" Type="Self.Cadidate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -449,7 +450,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Question__id_cat__4AB81AF0">
+        <Association Name="FK__Question__id_cat__5CD6CB2B">
           <End Role="CategoryOfQuestion" Type="Self.CategoryOfQuestion" Multiplicity="0..1" />
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
@@ -461,7 +462,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Vacancies__id_de__4CA06362">
+        <Association Name="FK__Vacancies__id_de__5EBF139D">
           <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
           <End Role="Vacancies" Type="Self.Vacancy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -473,7 +474,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__QuestionO__id_ex__49C3F6B7">
+        <Association Name="FK__QuestionO__id_ex__5BE2A6F2">
           <End Role="Examination" Type="Self.Examination" Multiplicity="0..1" />
           <End Role="QuestionOfExamination" Type="Self.QuestionOfExamination" Multiplicity="*" />
           <ReferentialConstraint>
@@ -485,7 +486,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Vacancies__id_ex__48CFD27E">
+        <Association Name="FK__Vacancies__id_ex__5AEE82B9">
           <End Role="Examination" Type="Self.Examination" Multiplicity="0..1" />
           <End Role="Vacancies" Type="Self.Vacancy" Multiplicity="*" />
           <ReferentialConstraint>
@@ -497,7 +498,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__QuestionO__id_qu__4F7CD00D">
+        <Association Name="FK__QuestionO__id_qu__619B8048">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
           <End Role="QuestionOfExamination" Type="Self.QuestionOfExamination" Multiplicity="*" />
           <ReferentialConstraint>
@@ -520,35 +521,35 @@
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="QuestionOfExaminations" EntityType="Self.QuestionOfExamination" />
           <EntitySet Name="Vacancies" EntityType="Self.Vacancy" />
-          <AssociationSet Name="FK__Answer__id_quest__4BAC3F29" Association="Self.FK__Answer__id_quest__4BAC3F29">
+          <AssociationSet Name="FK__Answer__id_quest__5DCAEF64" Association="Self.FK__Answer__id_quest__5DCAEF64">
             <End Role="Question" EntitySet="Questions" />
             <End Role="Answer" EntitySet="Answers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cadidates__id_me__4D94879B" Association="Self.FK__Cadidates__id_me__4D94879B">
+          <AssociationSet Name="FK__Cadidates__id_me__5FB337D6" Association="Self.FK__Cadidates__id_me__5FB337D6">
             <End Role="Member" EntitySet="Members" />
             <End Role="Cadidates" EntitySet="Cadidates" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cadidates__id_va__4E88ABD4" Association="Self.FK__Cadidates__id_va__4E88ABD4">
+          <AssociationSet Name="FK__Cadidates__id_va__60A75C0F" Association="Self.FK__Cadidates__id_va__60A75C0F">
             <End Role="Vacancies" EntitySet="Vacancies" />
             <End Role="Cadidates" EntitySet="Cadidates" />
           </AssociationSet>
-          <AssociationSet Name="FK__Question__id_cat__4AB81AF0" Association="Self.FK__Question__id_cat__4AB81AF0">
+          <AssociationSet Name="FK__Question__id_cat__5CD6CB2B" Association="Self.FK__Question__id_cat__5CD6CB2B">
             <End Role="CategoryOfQuestion" EntitySet="CategoryOfQuestions" />
             <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Vacancies__id_de__4CA06362" Association="Self.FK__Vacancies__id_de__4CA06362">
+          <AssociationSet Name="FK__Vacancies__id_de__5EBF139D" Association="Self.FK__Vacancies__id_de__5EBF139D">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Vacancies" EntitySet="Vacancies" />
           </AssociationSet>
-          <AssociationSet Name="FK__QuestionO__id_ex__49C3F6B7" Association="Self.FK__QuestionO__id_ex__49C3F6B7">
+          <AssociationSet Name="FK__QuestionO__id_ex__5BE2A6F2" Association="Self.FK__QuestionO__id_ex__5BE2A6F2">
             <End Role="Examination" EntitySet="Examinations" />
             <End Role="QuestionOfExamination" EntitySet="QuestionOfExaminations" />
           </AssociationSet>
-          <AssociationSet Name="FK__Vacancies__id_ex__48CFD27E" Association="Self.FK__Vacancies__id_ex__48CFD27E">
+          <AssociationSet Name="FK__Vacancies__id_ex__5AEE82B9" Association="Self.FK__Vacancies__id_ex__5AEE82B9">
             <End Role="Examination" EntitySet="Examinations" />
             <End Role="Vacancies" EntitySet="Vacancies" />
           </AssociationSet>
-          <AssociationSet Name="FK__QuestionO__id_qu__4F7CD00D" Association="Self.FK__QuestionO__id_qu__4F7CD00D">
+          <AssociationSet Name="FK__QuestionO__id_qu__619B8048" Association="Self.FK__QuestionO__id_qu__619B8048">
             <End Role="Question" EntitySet="Questions" />
             <End Role="QuestionOfExamination" EntitySet="QuestionOfExaminations" />
           </AssociationSet>
@@ -587,7 +588,6 @@
           <EntitySetMapping Name="Cadidates">
             <EntityTypeMapping TypeName="dbSem3Model.Cadidate">
               <MappingFragment StoreEntitySet="Cadidates">
-                <ScalarProperty Name="submit_cadidate_cadidate" ColumnName="submit_cadidate_cadidate" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_member" ColumnName="id_member" />
                 <ScalarProperty Name="id_vacancy" ColumnName="id_vacancy" />
@@ -599,6 +599,7 @@
                 <ScalarProperty Name="answer_of_cadidate" ColumnName="answer_of_cadidate" />
                 <ScalarProperty Name="created_at" ColumnName="created_at" />
                 <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="submit_cadidate_cadidate" ColumnName="submit_cadidate_cadidate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

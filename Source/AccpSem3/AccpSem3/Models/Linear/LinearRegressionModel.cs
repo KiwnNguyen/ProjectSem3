@@ -49,7 +49,7 @@ namespace AccpSem3.Models.Linear
                             string t = "";
                         }
                     }
-                    y[i] = trainingDataList[i].answer.Is_correct1 ? 1.0 : 0.0; // Gán giá trị đúng/sai cho vector giá trị y
+                    //y[i] = trainingDataList[i].answer.Is_correct1 ? 1.0 : 0.0; // Gán giá trị đúng/sai cho vector giá trị y
                                                                                // Kiểm tra đáp án đúng/sai
                     if (trainingDataList[i].answer.title == listanswers)
                     {
