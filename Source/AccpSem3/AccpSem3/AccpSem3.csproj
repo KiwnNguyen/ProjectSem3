@@ -4495,6 +4495,8 @@
     <Content Include="Models\Entities\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Admin\PageAddDep.cshtml" />
+    <Content Include="Views\Admin\PageUpdateDep.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace AccpSem3.Models.Repository
 {
@@ -60,6 +61,50 @@ namespace AccpSem3.Models.Repository
 
             }
             return null;
+        }
+        public int InsertDep(DepartmentView model)
+        {
+            try
+            {
+                if (model!= null)
+                {
+                    dbSem3Entities entities = new dbSem3Entities();
+
+                    Department modelDep = new Department();
+                    modelDep.Dname = model.Dname;
+                    entities.Departments.Add(modelDep);
+                    entities.SaveChanges();
+
+                    return 1;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return 0;
+        }
+        public int UpdateDep(DepartmentView model)
+        {
+            try
+            {
+                if (model != null)
+                {
+                    dbSem3Entities entities = new dbSem3Entities();
+                    var q = entities.Departments.Find(model.id);
+                    if (q != null)
+                    {
+                        q.Dname = model.Dname;
+                        entities.SaveChanges();
+                    }
+                }
+                return 1;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return 0;
         }
     }
 }
