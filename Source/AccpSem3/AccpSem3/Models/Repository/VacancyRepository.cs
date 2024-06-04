@@ -81,7 +81,7 @@ namespace AccpSem3.Models.Repository
             try
             {
                 dbSem3Entities en = new dbSem3Entities();
-                var rs = en.Vacancies.Where(va => (va.status.Equals("1") && va.featured == featured) || (va.status.Equals("1") && va.jobnature.Equals(jobnature))).ToList();
+                var rs = en.Vacancies.Where(va => (va.status.Equals("open") && va.featured == featured) || (va.status.Equals("open") && va.jobnature.Equals(jobnature))).ToList();
                 List<VacanciesView> vv = new List<VacanciesView>();
                 foreach (var item in rs)
                 {
