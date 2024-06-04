@@ -1,5 +1,6 @@
 ﻿using AccpSem3.Models.Entities;
 using AccpSem3.Models.ModeView;
+using AccpSem3.Models.ModeView.ModelJoin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +73,28 @@ namespace AccpSem3.Models.Repository
             }
             return null;
         }
+        public List<QuantityAttention> QuantityCadiVan()
+        {
+            try
+            {
+                dbSem3Entities entities = new dbSem3Entities();
 
+                var q = (from a in entities.Cadidates
+                         join b in entities.Vacancies on a.id_vacancy equals b.id
+                         group new { a, b } by new { a.id_vacancy, b.name } into g
+                         select new QuantityAttention
+                         {
+                             nameVancies = g.Key.name,
+                             quantityPerson = g.Count()
+                         }).ToList();
+                return q;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
         public void InsertVan(VacanciesView model)
         {
             try
