@@ -14,8 +14,6 @@ using System.Web.Mvc;
 
 namespace AccpSem3.Controllers
 {
- 
- 
     public class HomeController : Controller
     {
         public ActionResult Index()
