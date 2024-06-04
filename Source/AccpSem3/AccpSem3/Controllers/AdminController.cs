@@ -25,12 +25,12 @@ namespace AccpSem3.Controllers
         {
             try
             {
-                var ls = VacanciesRepositories.Instance.GetAll();
+                var ls = VacanciesRepositories.Instance.QuantityCadiVan();
 
                 var chartData = new
                 {
-                    labels = ls.Select(v => v.name),
-                    data = ls.Select(v => v.quantity_emp)
+                    labels = ls.Select(v => v.nameVancies),
+                    data = ls.Select(v => v.quantityPerson)
                 };
                 if (chartData != null)
                 {
