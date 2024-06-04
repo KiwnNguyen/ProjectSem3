@@ -3,20 +3,22 @@
     ViewBag.Title = "PageViewVancacies";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     List<AccpSem3.Models.ModeView.VacanciesView> ls = new List<AccpSem3.Models.ModeView.VacanciesView>();
+    List<AccpSem3.Models.ModeView.DepartmentView> ls1 = new List<AccpSem3.Models.ModeView.DepartmentView>();
 
     if (ViewBag.Vanciest != null)
     {
         ls = ViewBag.Vanciest;
     }
+    if (ViewBag.Depart != null)
+    {
+        ls1 = ViewBag.Depart;
+    }
     int index = 1;
-
-
-
+    int index1 = 1;
 }
 <main class="content-wrapper">
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
-
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card p-0">
                     <h5 class="card-title card-padding pb-0" style="text-align: center">Business about vacancies</h5>
@@ -179,7 +181,38 @@
                     </div>
                 </div>
             </div>
-
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div class="mdc-card p-0">
+                    <h5 class="card-title card-padding pb-0" style="text-align: center">Business Department</h5>
+                    <a class="mdc-button mdc-button--raise filled-button--warning" href="@Url.Action("PageAddDep","Admin")">Add Depart <i class="material-icons">add</i></a>
+                    <div class="table-responsive">
+                        <table class="table table-hoverable">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">STT</th>
+                                    <th style="text-align: center">Name</th>
+                                    <th style="text-align: center">Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (AccpSem3.Models.ModeView.DepartmentView item in ls1)
+                                {
+                                    <tr>
+                                        <td class="text-left">@index1</td>
+                                        <td style="text-align: center">@item.Dname</td>
+                                        <td style="text-align: center">
+                                            <a class="button-with-icon" id="" href="@Url.Action("PageUpdateDep","Admin",new {id = item.id})">
+                                                <i class="fa-solid fa-pen-to-square"></i> <!-- Biểu tượng cho trạng thái Bật -->
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    index1++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>

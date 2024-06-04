@@ -49,7 +49,16 @@ namespace AccpSem3.Controllers
             try
             {
                 List<VacanciesView> ls = VacanciesRepositories.Instance.GetAll();
-                ViewBag.Vanciest = ls;
+                if (ls != null)
+                {
+                    ViewBag.Vanciest = ls;
+                }
+                List<DepartmentView> ls1 = DepartmentRepositories.Instance.GetAll();
+                if (ls1 != null)
+                {
+                    ViewBag.Depart = ls1;
+
+                }
             }
             catch (Exception e)
             {
@@ -104,7 +113,7 @@ namespace AccpSem3.Controllers
                 if (model !=null)
                 {
                     DepartmentRepositories.Instance.InsertDep(model);
-                    return RedirectToAction("PageViewVancies","Admin");
+                    return RedirectToAction("PageViewVancacies", "Admin");
                 }
             }
             catch (Exception e)
@@ -119,12 +128,14 @@ namespace AccpSem3.Controllers
             {
                 if (id > 0)
                 {
+                    DepartmentView model = new DepartmentView();
                     List<DepartmentView> ls = DepartmentRepositories.Instance.GetByIdDep(id);
                     foreach (DepartmentView item in ls)
                     {
                         ViewBag.DName = item.Dname;
+                        ViewBag.idName = item.id;
                     }
-                    return View();
+                    return View(model);
                 }
             }
             catch (Exception e)
@@ -137,10 +148,13 @@ namespace AccpSem3.Controllers
         {
             try
             {
+
                 if (model != null)
                 {
+                    string id_input = Request.Params["id"];
+                    model.id = int.Parse(id_input);
                     DepartmentRepositories.Instance.UpdateDep(model);
-                    return RedirectToAction("PageViewVancies", "Admin");
+                    return RedirectToAction("PageViewVancacies", "Admin");
                 }
             }
             catch (Exception e)
