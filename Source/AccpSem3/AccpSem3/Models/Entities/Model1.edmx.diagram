@@ -23,6 +23,7 @@
         <AssociationConnector Association="dbSem3Model.FK__QuestionO__id_ex__5BE2A6F2" ManuallyRouted="false" />
         <AssociationConnector Association="dbSem3Model.FK__Vacancies__id_ex__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="dbSem3Model.FK__QuestionO__id_qu__619B8048" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbSem3Model.sysdiagram" Width="1.5" PointX="6.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

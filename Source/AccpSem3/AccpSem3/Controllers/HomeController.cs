@@ -22,6 +22,8 @@ namespace AccpSem3.Controllers
             ViewBag.feturedJob = VacancyRepository.Instance.GetVacanciesView("no", 1);
             ViewBag.fulltimeJob = VacancyRepository.Instance.GetVacanciesView("FULL TIME", -1);
             ViewBag.parttimeJob = VacancyRepository.Instance.GetVacanciesView("PART TIME", -1);
+            DateTime dateTime = DateTime.Now;
+            string t = dateTime.ToString("yyyy-MM-dd");
             return View();
         }
 
@@ -122,6 +124,10 @@ namespace AccpSem3.Controllers
                     foreach (CadidateView item in views)
                     {
                         status1 = item.status;
+                    }
+                    if (HttpContext.Session["ExpireCadidate"] != null)
+                    {
+                        ViewBag.dateExpire = HttpContext.Session["ExpireCadidate"];
                     }
                     string t = status1.ToString();
                     HttpContext.Session["idStatusCadi"] = t.ToString();

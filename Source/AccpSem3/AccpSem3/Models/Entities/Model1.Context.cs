@@ -35,5 +35,6 @@ namespace AccpSem3.Models.Entities
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<QuestionOfExamination> QuestionOfExaminations { get; set; }
         public virtual DbSet<Vacancy> Vacancies { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
