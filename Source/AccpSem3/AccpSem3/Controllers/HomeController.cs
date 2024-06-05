@@ -18,6 +18,9 @@ namespace AccpSem3.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.feturedJob = VacancyRepository.Instance.GetVacanciesView("no", 1);
+            ViewBag.fulltimeJob = VacancyRepository.Instance.GetVacanciesView("FULL TIME", -1);
+            ViewBag.parttimeJob = VacancyRepository.Instance.GetVacanciesView("PART TIME", -1);
             return View();
         }
 

@@ -15,9 +15,11 @@ namespace AccpSem3.Models.ModeView
         public Nullable<int> id_dep { get; set; }
         public string status { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
+        public string created_at_view { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
         public string salary { get; set; }
         public Nullable<System.DateTime> dateline { get; set; }
+        public string dateline_view { get; set; }
         public string jobnature { get; set; }
         public Nullable<int> featured { get; set; }
     }
