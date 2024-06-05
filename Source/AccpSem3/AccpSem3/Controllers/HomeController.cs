@@ -48,45 +48,55 @@ namespace AccpSem3.Controllers
                 string confirmpass = Request.Params["confirmPass"];
                 if (model.password.Equals(confirmpass))
                 {
-                    if (model != null)
+                    if (model.phone.Length == 10)
                     {
-                        if (HttpContext.Session["infoAccount1"] != null)
+                        if (model != null)
                         {
-                            var ctx = Request.GetOwinContext();
-                            var authenticationManger = ctx.Authentication;
-                            authenticationManger.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                            Session.Clear();
-                            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                            Response.Cache.SetNoStore();
-                            Response.Headers.Add("Cache-Control", "no-store");
-                        }
-                        string fill = model.fullname;
-                        model.status = 1;
-                        model.created_at = DateTime.Now;
-                        model.updated_at = DateTime.Now;
-                        model.images = null;
-                        model.cv = null;
-                        //Encryption Passwork
-                        string pass = model.password;
-                        //string passEncrypt = PasswordHasher.HashPassword(pass);
-                        string passEncrypt = PasswordHasher1.EncodePasswordToBase64(pass);
-                        model.password = passEncrypt;
+                            if (HttpContext.Session["infoAccount1"] != null || HttpContext.Session["infoAccount2"] != null)
+                            {
+                                var ctx = Request.GetOwinContext();
+                                var authenticationManger = ctx.Authentication;
+                                authenticationManger.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                                Session.Clear();
+                                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                                Response.Cache.SetNoStore();
+                                Response.Headers.Add("Cache-Control", "no-store");
+                            }
+                            string fill = model.fullname;
+                            model.status = 1;
+                            model.created_at = DateTime.Now;
+                            model.updated_at = DateTime.Now;
+                            model.images = null;
+                            model.cv = null;
+                            //Encryption Passwork
+                            string pass = model.password;
+                            //string passEncrypt = PasswordHasher.HashPassword(pass);
+                            string passEncrypt = PasswordHasher1.EncodePasswordToBase64(pass);
+                            model.password = passEncrypt;
 
-                        var userRepository = UserRepositorty.Instance; // Tạo biến userRepository
-                        var t = userRepository.InsertUser(model);
-                        if (t > 0)
-                        {
-                            HttpContext.Session["infoAccount"] = "Đăng ký thành công";
-                        }
-                        else
-                        {
-                            HttpContext.Session["infoAccount"] = "Đăng ký thất bại";
+                            var userRepository = UserRepositorty.Instance; // Tạo biến userRepository
+                            var t = userRepository.InsertUser(model);
+                            if (t > 0)
+                            {
+                                HttpContext.Session["infoAccount"] = "Register Success";
+                            }
+                            else
+                            {
+                                HttpContext.Session["infoAccount"] = "Register Failer";
+                            }
                         }
                     }
+                    else
+                    {
+                        HttpContext.Session["infoAccount2"] = "Please Number Phone Is Length 10";
+                        return RedirectToAction("PageLogin", "Login");
+                    }
+
                 }
                 else
                 {
-                    HttpContext.Session["infoAccount1"] = "Password không cần khớp";
+                    HttpContext.Session["infoAccount1"] = "Confirm password false";
+                    return RedirectToAction("PageLogin", "Login");
                 }
             }
             catch (Exception e)

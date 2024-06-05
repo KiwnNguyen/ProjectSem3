@@ -50,20 +50,20 @@
                                 <h4>Register</h4>
                                 @if (HttpContext.Current.Session["infoAccount"] != null)
                                 {
-                                    if (HttpContext.Current.Session["infoAccount"].Equals("Đăng ký thành công"))
+                                    if (HttpContext.Current.Session["infoAccount"].Equals("Register Success"))
                                     {
                                         <h4 style="color:green">@HttpContext.Current.Session["infoAccount"]</h4>
                                     }
-                                    if (HttpContext.Current.Session["infoAccount"].Equals("Đăng ký thất bại"))
+                                    if (HttpContext.Current.Session["infoAccount"].Equals("Register Failer"))
                                     {
                                         <h4 style="color:red">@HttpContext.Current.Session["infoAccount"]</h4>
                                     }
                                 }
                                 @if (HttpContext.Current.Session["infoAccount1"] != null)
                                 {
-                                    if (HttpContext.Current.Session["infoAccount1"].Equals("Password không cần khớp"))
+                                    if (HttpContext.Current.Session["infoAccount1"].Equals("Confirm password false"))
                                     {
-                                        <h4 style="color:yellow">@HttpContext.Current.Session["infoAccount1"]</h4>
+                                        <h4 style="color:red">@HttpContext.Current.Session["infoAccount1"]</h4>
                                     }
                                 }
                             <form action="/Home/RegisterAccount" method="post" class="aa-login-form">
@@ -87,6 +87,13 @@
                                 <label for="">Work experience<span></span></label>
                                 <input type="text" placeholder="" value="@Model.work_experience" name="work_experience">
                                 <hr class="m-4" />
+                                @if (HttpContext.Current.Session["infoAccount2"] != null)
+                                {
+                                    if (HttpContext.Current.Session["infoAccount2"].Equals("Please Number Phone Is Length 10"))
+                                    {
+                                        <h4 style="color:red">@HttpContext.Current.Session["infoAccount2"]</h4>
+                                    }
+                                }
                                 <label for="">Phone</label>
                                 <input type="number" placeholder="" value="@Model.phone" name="phone">
                                 <br />
