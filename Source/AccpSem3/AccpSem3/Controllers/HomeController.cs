@@ -234,10 +234,7 @@ namespace AccpSem3.Controllers
                     updated_at = ev.question.updated_at,
                     is_correct = ev.answer.is_correct,
                     title_answer = ev.answer.title
-
-
                 }).ToList();
-
                 //List<QuestionView> listQuesstion = QuestionRepositories.Instance.GetAll();
                 List<AnswerView> listAnswer = AnswerRepositories.Instance.GetAll();
 
@@ -400,7 +397,9 @@ namespace AccpSem3.Controllers
                 if (responsitories != null)
                 {
                     //int? id_mem = int.Parse(id);
-                    List<MemberView> members = MemberRepositories.Instance.GetById(id);
+                    string id_mem = HttpContext.Session["IdAccountUser"] as string;
+                    int id_part = int.Parse(id_mem);
+                    List<MemberView> members = MemberRepositories.Instance.GetById(id_part);
                     if (members != null)
                     {
                         foreach (MemberView item in members)
