@@ -393,7 +393,8 @@
         var currentPage2 = 0;// Trang Page1
 
         var answers = {};//lưu các giá trị được chọn
-        var answers1 = {};
+        //var answers = new Array(15).fill(null);
+        var answerObject = {};
 
         //Test
         var pages = [];
@@ -412,7 +413,7 @@
                 var data4 = response.Data4;
                 data3 = response.Data3;
                 //console.log(data);
-                //console.log(data1);
+                console.log(data1);
                 //console.log(data2);
                 //console.log(data3);
                 console.log("hello");
@@ -756,7 +757,7 @@
 
                     }
                     else {
-                        page2Question2Html += "<label> B." + data[1].title_answer + "</label><br><br>";
+                        page2Question2Html += "<label> B." + data1[1].title_answer + "</label><br><br>";
                     }
                     ///
                     if (data1[2].is_correct === 1) {
@@ -780,7 +781,7 @@
                         page2Question2Html += "<label> D." + data1[3].title_answer + "</label><br><br>";
                     }
                     //Câu hỏi 2 (4 -> 7) data4[1]
-                    page2Question2Html += "<h4 > Câu hỏi 2: " + data[4].title + "</h4 > ";
+                    page2Question2Html += "<h4 > Câu hỏi 2: " + data1[4].title + "</h4 > ";
                     if (data1[4].is_correct === 1) {
                         page2Question2Html += "<label> A." + data1[4].title_answer + " <i class='fa-solid fa-check' style='color:green'></i></label><br><br>";
                     }
@@ -821,7 +822,7 @@
                         page2Question2Html += "<label> D." + data1[7].title_answer + "</label><br><br>";
                     }
                     //Câu hỏi 3 (8 -> 11)
-                    page2Question2Html += "<h4 > Câu hỏi 3: " + data[8].title + "</h4 > ";
+                    page2Question2Html += "<h4 > Câu hỏi 3: " + data1[8].title + "</h4 > ";
                     if (data1[8].is_correct === 1) {
                         page2Question2Html += "<label> A." + data1[8].title_answer + " <i class='fa-solid fa-check' style='color:green'></i></label><br><br>";
                     }
@@ -938,7 +939,7 @@
                         page2Question2Html += "<label> D." + data1[19].title_answer + " <i class='fa-solid fa-check' style='color:green'></i></label><br><br>";
                     }
                     else if (data4[9] == data1[19].title_answer) {
-                        page2Question2Html += "<label> D." + data1[1].title_answer + " <i class='fa-solid fa-x' style='color:red'></i></label><br><br>";
+                        page2Question2Html += "<label> D." + data1[19].title_answer + " <i class='fa-solid fa-x' style='color:red'></i></label><br><br>";
                     }
                     else {
                         page2Question2Html += "<label> D." + data1[19].title_answer + "</label><br><br>";
@@ -1147,7 +1148,7 @@
                         page3Question3Html += "<label> D." + data2[19].title_answer + " <i class='fa-solid fa-check' style='color:green'></i></label><br><br>";
                     }
                     else if (data4[14] == data2[19].title_answer) {
-                        page3Question3Html += "<label> D." + data2[1].title_answer + " <i class='fa-solid fa-x' style='color:red'></i></label><br><br>";
+                        page3Question3Html += "<label> D." + data2[19].title_answer + " <i class='fa-solid fa-x' style='color:red'></i></label><br><br>";
                     }
                     else {
                         page3Question3Html += "<label> D." + data2[19].title_answer + "</label><br><br>";
@@ -1316,17 +1317,32 @@
             var timerInterval;
 
             $(document).on('click', 'input[type="radio"][id="page1"]', function () {///////////////////////////////
-                // Xử lý sự kiện click ô radio ở đây
-                // Lấy giá trị của ô radio được chọn
+                 //Xử lý sự kiện click ô radio ở đây
+                 //Lấy giá trị của ô radio được chọn
                 var value = $(this).val();
                 console.log(value);
                 // Lấy tên của ô radio được chọn
                 var name = $(this).attr('name');
                 // Thêm giá trị vào mảng answers
-                answers[name] = value;
-                // In mảng answers ra để kiểm tra
-                console.log("heelo")
+                answerObject[name] = value;
+
+                // Sắp xếp lại các thuộc tính của answerObject
+                //var sortedKeys = Object.keys(answerObject).sort();
+                var sortedKeys = Object.keys(answerObject).sort(function (a, b) {
+                    return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+                });
+                var sortedAnswers = [];
+                //for (var i = 0; i < sortedKeys.length; i++) {
+                //    sortedAnswers[i] = answerObject[sortedKeys[i]];
+                //}
+                sortedKeys.forEach(function (key) {
+                    sortedAnswers.push(answerObject[key]);
+                });
+                answers = sortedAnswers;
                 console.log(answers);
+          
+          
+
             });
 
             //Button Send
