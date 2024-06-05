@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+using System.Web.UI;
 
 namespace AccpSem3.Controllers
 {
@@ -22,7 +23,6 @@ namespace AccpSem3.Controllers
         //DAT DO
         public ActionResult Index()
         {
-            
             try
             {
                 var ls = VacanciesRepositories.Instance.GetAll();
@@ -83,7 +83,72 @@ namespace AccpSem3.Controllers
             }
             return View();
         }
-
+        public ActionResult PageAddDep()
+        {
+            try
+            {
+                DepartmentView model = new DepartmentView();
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
+        [HttpPost]
+        public ActionResult SubmitAddDep(DepartmentView model)
+        {
+            try
+            {
+                if (model !=null)
+                {
+                    DepartmentRepositories.Instance.InsertDep(model);
+                    return RedirectToAction("PageViewVancies","Admin");
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
+        public ActionResult PageUpdateDep(int? id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    List<DepartmentView> ls = DepartmentRepositories.Instance.GetByIdDep(id);
+                    foreach (DepartmentView item in ls)
+                    {
+                        ViewBag.DName = item.Dname;
+                    }
+                    return View();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
+        public ActionResult SubmitUptDep(DepartmentView model)
+        {
+            try
+            {
+                if (model != null)
+                {
+                    DepartmentRepositories.Instance.UpdateDep(model);
+                    return RedirectToAction("PageViewVancies", "Admin");
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
         public ActionResult PageViewDetailDepart(int? id)
         {
             try

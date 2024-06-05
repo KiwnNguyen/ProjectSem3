@@ -3987,13 +3987,6 @@
     <Content Include="Content\Assets\Client\scss\bootstrap\scss\_type.scss" />
     <Content Include="Content\Assets\Client\scss\bootstrap\scss\_utilities.scss" />
     <Content Include="Content\Assets\Client\scss\bootstrap\scss\_variables.scss" />
-    <EntityDeploy Include="Models\Entities\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Entities\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\Assets\Admin\tb\assets\demo\data\countries.json" />
     <Content Include="Content\Assets\Admin\tb\assets\demo\data\data1.json" />
     <Content Include="Content\Assets\Admin\tb\assets\demo\data\events.json" />
@@ -4495,6 +4488,21 @@
     <Content Include="Content\Assets\Admin\tb\assets\vendors\themify-icons\fonts\themify.ttf" />
     <Content Include="Content\Assets\Admin\tb\assets\vendors\themify-icons\fonts\themify.woff" />
     <Content Include="Content\Assets\Admin\tb\assets\vendors\themify-icons\README.md" />
+    <EntityDeploy Include="Models\Entities\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Entities\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Admin\PageAddDep.cshtml" />
+    <Content Include="Views\Admin\PageUpdateDep.cshtml" />
+    <None Include="Web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4506,13 +4514,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -4545,9 +4546,11 @@
     <Content Include="Views\Home\PageHistoryCadi.cshtml" />
     <Content Include="Views\Home\PageSendCv.cshtml" />
     <Content Include="Views\Home\ResultCadi.cshtml" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Assets\Cv\" />
     <Folder Include="Content\Assets\Image\" />
     <Folder Include="Models\Interface\" />
   </ItemGroup>
