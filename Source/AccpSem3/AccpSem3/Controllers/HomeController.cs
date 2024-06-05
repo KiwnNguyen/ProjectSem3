@@ -391,7 +391,7 @@ namespace AccpSem3.Controllers
         }
 
         [Authorize(Roles = "USER")]
-        public ActionResult PageSendCv(string name)
+        public ActionResult PageSendCv(int id)
         {
             try
             {
@@ -399,10 +399,8 @@ namespace AccpSem3.Controllers
                 List<VacanciesView> responsitories = VacanciesRepositories.Instance.GetAll();
                 if (responsitories != null)
                 {
-                    string id = HttpContext.Session["IdAccountUser"] as string;
-                    int? id_mem = int.Parse(id);
-
-                    List<MemberView> members = MemberRepositories.Instance.GetById(id_mem);
+                    //int? id_mem = int.Parse(id);
+                    List<MemberView> members = MemberRepositories.Instance.GetById(id);
                     if (members != null)
                     {
                         foreach (MemberView item in members)
@@ -410,7 +408,14 @@ namespace AccpSem3.Controllers
                             ViewBag.cv_test = item.cv;
                         }
                     }
-                    ViewBag.Vancies = responsitories;
+                    VacanciesView ls = VacancyRepository.Instance.GetVacancyById(id);
+                    
+                    if (ls != null)
+                    {
+                        ViewBag.vacancy = ls;
+                        ViewBag.nameVan = ls.name;
+                        ViewBag.id_van = ls.id;
+                    }
 
                 }
                 ViewBag.Email = HttpContext.Session["EmailAccountUser"];
@@ -463,7 +468,7 @@ namespace AccpSem3.Controllers
                         ModelMember.id = modelMem.id;
                         MemberRepositories.Instance.UpdateCv(ModelMember);
                         ViewBag.Info = "Nộp thành công";
-                        return RedirectToAction("PageSendCv", "Home");
+                        return RedirectToAction("index", "Home");
                     }
                 }
             }
