@@ -19,7 +19,7 @@ namespace AccpSem3.Controllers
     [Authorize(Roles = "ADMIN")]
     public class AdminController : Controller
     {
-        // GET: Admin
+        // GET: Admins
         //DAT DO
         public ActionResult Index()
         {
