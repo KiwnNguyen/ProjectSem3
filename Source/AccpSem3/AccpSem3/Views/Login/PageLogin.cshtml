@@ -59,29 +59,40 @@
                                         <h4 style="color:red">@HttpContext.Current.Session["infoAccount"]</h4>
                                     }
                                 }
-                                <form action="/Home/RegisterAccount" method="post" class="aa-login-form">
-                                    <label for="">Full Name<span>*</span></label>
-                                    <input type="text" placeholder="Full Your Name" name="fullname" value="@Model.fullname">
-                                    <label for="">Email<span>*</span></label>
-                                    <input type="text" placeholder="Email" value="@Model.email" name="email">
-                                    <hr class="m-4" />
-                                    <label for="">Password<span>*</span></label>
-                                    <input type="password" placeholder="Password" value="@Model.password" name="password">
-                                    <label for="">Personal</label>
-                                    <input type="text" placeholder="" value="@Model.personal_detail" name="personal_detail">
-                                    <hr class="m-4" />
-                                    <label for="">Education<span></span></label>
-                                    <input type="text" placeholder="" value="@Model.education_details" name="education_details">
-                                    <hr class="m-4" />
-                                    <label for="">Work experience<span></span></label>
-                                    <input type="text" placeholder="" value="@Model.work_experience" name="work_experience">
-                                    <hr class="m-4" />
-                                    <label for="">Phone</label>
-                                    <input type="number" placeholder="" value="@Model.phone" name="phone">
-                                    <br />
-                                    <br />
-                                    <button type="submit" class="btn btn-primary" style="">Register</button>
-                                </form>
+                                @if (HttpContext.Current.Session["infoAccount1"] != null)
+                                {
+                                    if (HttpContext.Current.Session["infoAccount1"].Equals("Password không cần khớp"))
+                                    {
+                                        <h4 style="color:yellow">@HttpContext.Current.Session["infoAccount1"]</h4>
+                                    }
+                                }
+                            <form action="/Home/RegisterAccount" method="post" class="aa-login-form">
+                                <label for="">Full Name<span>*</span></label>
+                                <input type="text" placeholder="Full Your Name" name="fullname" value="@Model.fullname">
+                                <label for="">Email<span>*</span></label>
+                                <input type="text" placeholder="Email" value="@Model.email" name="email">
+                                <hr class="m-4" />
+                                <label for="">Password<span>*</span></label>
+                                <input type="password" placeholder="Password" value="@Model.password" name="password">
+                                <hr class="m-4" />
+                                <label for="">Confirm Password<span>*</span></label>
+                                <input type="password" placeholder="Confirm Password" value="" name="confirmPass">
+                                <hr class="m-4" />
+                                <label for="">Personal</label>
+                                <input type="text" placeholder="" value="@Model.personal_detail" name="personal_detail">
+                                <hr class="m-4" />
+                                <label for="">Education<span></span></label>
+                                <input type="text" placeholder="" value="@Model.education_details" name="education_details">
+                                <hr class="m-4" />
+                                <label for="">Work experience<span></span></label>
+                                <input type="text" placeholder="" value="@Model.work_experience" name="work_experience">
+                                <hr class="m-4" />
+                                <label for="">Phone</label>
+                                <input type="number" placeholder="" value="@Model.phone" name="phone">
+                                <br />
+                                <br />
+                                <button type="submit" class="btn btn-primary" style="">Register</button>
+                            </form>
                             </div>
                         </div>
                     </div>
