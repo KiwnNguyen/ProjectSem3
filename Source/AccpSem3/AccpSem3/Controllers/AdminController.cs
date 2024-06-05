@@ -447,13 +447,15 @@ namespace AccpSem3.Controllers
                 string user = Request.Params["username"];
                 string pass = Request.Params["password"];
                 string id_mem = Request.Params["id_mem"];
-                if (!string.IsNullOrEmpty(string.Concat(user, pass, id_mem)))
+                string dateline = Request.Params["dateline"]; 
+                if (!string.IsNullOrEmpty(string.Concat(user, pass, id_mem,dateline)))
                 {
                     CadidateView model = new CadidateView();
                     model.id = int.Parse(id_mem);
                     model.username = user;
                     string pass_encrypt = PasswordHasher1.EncodePasswordToBase64(pass);
                     model.password = pass_encrypt;
+                    model.expire_date = DateTime.Parse(dateline);
                     int result = CandidateRepositories.Instance.CreateAccountCadi(model);
                     if (result == 1)
                     {

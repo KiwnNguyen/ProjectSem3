@@ -134,11 +134,27 @@ namespace AccpSem3.Controllers
                     }
                     else if (loginInfoAdmin != null && loginInfoAdmin.Count() > 0)
                     {
-
                         var logindetalsAdmin = loginInfoAdmin.First();
                         string role1 = "ADMIN";
                         HttpContext.Session["AccountNameAdmin"] = logindetalsAdmin.email;
                         this.SignInUser(logindetalsAdmin.email, false, role1);
+                        // Lấy thời gian ngày hôm nay
+                        //DateTime today = DateTime.Now;
+
+                        //// Tạo thời gian của ngày mai
+                        //DateTime tomorrow = today.AddDays(1);
+
+                        //// Lưu thời gian ngày mai vào biến
+                        //DateTime tomorrowDate = tomorrow;
+                      
+                        //if (tomorrow.Equals())
+                        //{
+                        //    int result = CandidateRepositories.Instance.UpdateDateCadidate();
+                        //    if (result > 0)
+                        //    {
+                        //        var t = "yes";
+                        //    }
+                        //}
                         returnUrl = "/Admin/Index";
                         return this.RedirectToLocal(returnUrl);
                     }
@@ -163,6 +179,10 @@ namespace AccpSem3.Controllers
                             {
                                 CandidateRepositories.Instance.StatusCadiOne(id_cadi);
                             }
+                            DateTime datime = (DateTime)logindetalsCadidate.expire_date;
+                            string session_date = datime.ToString();
+                            HttpContext.Session["ExpireCadidate"] = session_date;
+
                             string id_stats = logindetalsCadidate.id.ToString();
                             HttpContext.Session["idCadi"] = id_stats;
                             this.SignInUser(logindetalsCadidate.username, false, role1);
