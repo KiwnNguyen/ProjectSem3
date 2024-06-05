@@ -216,9 +216,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
+
                     <a href="/home/index" class="nav-item nav-link">Home</a>
                     <a href="/home/about" class="nav-item nav-link">About</a>
-                    <a href="/home/Contact" class="nav-item nav-link">Contact1</a>
+                    <a href="/home/Contact" class="nav-item nav-link">Contact</a>
+                    <a href="/home/PageSendCv" class="nav-item nav-link">SendCV</a>
+
                     @if (HttpContext.Current.Session["AccountNameCadidate"] != null)
                     {
                         <a href="/Home/FormTestCadi" class="nav-item nav-link">Test Cadidates</a>
@@ -235,10 +238,18 @@
                     }
                 </div>
                 @*@if (HttpContext.Current.Session["AccountName"] == null || HttpContext.Current.Session["AccountNameAdmin"] == null || HttpContext.Current.Session["AccountNameCadidate"] == null)
-                {
-                    <a href="/Login/PageLogin" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login</a>*@
+        {
+            <a href="/Login/PageLogin" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login</a>*@
 
-@*                }*@
+                @*                }*@
+                @if (HttpContext.Current.Session["AccountName"] != null)
+                {
+                    <h7 class="nav-item nav-link"><i class="fa-solid fa-user"></i> @HttpContext.Current.Session["AccountName"]</h7>
+                }
+                @if (HttpContext.Current.Session["AccountNameCadidate"] != null)
+                {
+                    <h7 class="nav-item nav-link"><i class="fa-regular fa-user"></i> @HttpContext.Current.Session["AccountNameCadidate"]</h7>
+                }
                 @if (HttpContext.Current.Session["AccountName"] != null || HttpContext.Current.Session["AccountNameAdmin"] != null || HttpContext.Current.Session["AccountNameCadidate"] != null)
                 {
                     <a href="/Login/LogOut" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Logout</a>

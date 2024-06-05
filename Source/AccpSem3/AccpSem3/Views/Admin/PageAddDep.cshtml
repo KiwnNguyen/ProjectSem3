@@ -1,8 +1,35 @@
-﻿
+﻿@model AccpSem3.Models.ModeView.DepartmentView
 @{
     ViewBag.Title = "PageAddDep";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>PageAddDep</h2>
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12">
+            <div class="mdc-card">
+                <h6 class="card-title">Add Depart</h6>
+                <div class="template-demo">
+                    <form action="/Admin/SubmitAddDep" method="post" enctype="multipart/form-data" id="frmData">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                                    <input class="mdc-text-field__input" name="Dname" id="text-field-hero-input" value="@Model.Dname">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="text-field-hero-input" class="mdc-floating-label">Name Depart</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br />
+                        <button type="submit" id="btnSave" class="btn-primary accordion-button">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
