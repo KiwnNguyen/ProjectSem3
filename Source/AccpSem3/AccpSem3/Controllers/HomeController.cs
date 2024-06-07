@@ -4,6 +4,7 @@ using AccpSem3.Models.Linear;
 using AccpSem3.Models.ModeView;
 using AccpSem3.Models.ModeView.ModelJoin;
 using AccpSem3.Models.Repository;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace AccpSem3.Controllers
             ViewBag.feturedJob = VacancyRepository.Instance.GetVacanciesView("no", 1);
             ViewBag.fulltimeJob = VacancyRepository.Instance.GetVacanciesView("FULL TIME", -1);
             ViewBag.parttimeJob = VacancyRepository.Instance.GetVacanciesView("PART TIME", -1);
+            DateTime dateTime = DateTime.Now;
+            string t = dateTime.ToString("yyyy-MM-dd");
             return View();
         }
 
@@ -44,30 +47,58 @@ namespace AccpSem3.Controllers
         {
             try
             {
-                if (model != null)
+                string confirmpass = Request.Params["confirmPass"];
+                if (model.password.Equals(confirmpass))
                 {
-                    string fill = model.fullname;
-                    model.status = 1;
-                    model.created_at = DateTime.Now;
-                    model.updated_at = DateTime.Now;
-                    model.images = null;
-                    model.cv = null;
-                    //Encryption Passwork
-                    string pass = model.password;
-                    //string passEncrypt = PasswordHasher.HashPassword(pass);
-                    string passEncrypt = PasswordHasher1.EncodePasswordToBase64(pass);
-                    model.password = passEncrypt;
-
-                    var userRepository = UserRepositorty.Instance; // Tạo biến userRepository
-                    var t = userRepository.InsertUser(model);
-                    if (t > 0)
+                    if (model.phone.Length == 10)
                     {
-                        HttpContext.Session["infoAccount"] = "Đăng ký thành công";
+                        if (model != null)
+                        {
+                            if (HttpContext.Session["infoAccount1"] != null || HttpContext.Session["infoAccount2"] != null)
+                            {
+                                var ctx = Request.GetOwinContext();
+                                var authenticationManger = ctx.Authentication;
+                                authenticationManger.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                                Session.Clear();
+                                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                                Response.Cache.SetNoStore();
+                                Response.Headers.Add("Cache-Control", "no-store");
+                            }
+                            string fill = model.fullname;
+                            model.status = 1;
+                            model.created_at = DateTime.Now;
+                            model.updated_at = DateTime.Now;
+                            model.images = null;
+                            model.cv = null;
+                            //Encryption Passwork
+                            string pass = model.password;
+                            //string passEncrypt = PasswordHasher.HashPassword(pass);
+                            string passEncrypt = PasswordHasher1.EncodePasswordToBase64(pass);
+                            model.password = passEncrypt;
+
+                            var userRepository = UserRepositorty.Instance; // Tạo biến userRepository
+                            var t = userRepository.InsertUser(model);
+                            if (t > 0)
+                            {
+                                HttpContext.Session["infoAccount"] = "Register Success";
+                            }
+                            else
+                            {
+                                HttpContext.Session["infoAccount"] = "Register Failer";
+                            }
+                        }
                     }
                     else
                     {
-                        HttpContext.Session["infoAccount"] = "Đăng ký thất bại";
+                        HttpContext.Session["infoAccount2"] = "Please Number Phone Is Length 10";
+                        return RedirectToAction("PageLogin", "Login");
                     }
+
+                }
+                else
+                {
+                    HttpContext.Session["infoAccount1"] = "Confirm password false";
+                    return RedirectToAction("PageLogin", "Login");
                 }
             }
             catch (Exception e)
@@ -94,9 +125,15 @@ namespace AccpSem3.Controllers
                     {
                         status1 = item.status;
                     }
+                    if (HttpContext.Session["ExpireCadidate"] != null)
+                    {
+                        string t1 = HttpContext.Session["ExpireCadidate"] as string;
+                        DateTime timer = DateTime.Parse(t1);
+                        string timerCadi = timer.ToString("yyyy-MM-dd");
+                        ViewBag.dateExpire = timerCadi;
+                    }
                     string t = status1.ToString();
                     HttpContext.Session["idStatusCadi"] = t.ToString();
-
                 }
             }
             catch (Exception e)
@@ -234,10 +271,7 @@ namespace AccpSem3.Controllers
                     updated_at = ev.question.updated_at,
                     is_correct = ev.answer.is_correct,
                     title_answer = ev.answer.title
-
-
                 }).ToList();
-
                 //List<QuestionView> listQuesstion = QuestionRepositories.Instance.GetAll();
                 List<AnswerView> listAnswer = AnswerRepositories.Instance.GetAll();
 

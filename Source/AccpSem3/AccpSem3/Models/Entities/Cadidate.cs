@@ -26,7 +26,8 @@ namespace AccpSem3.Models.Entities
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
         public string submit_cadidate_cadidate { get; set; }
-    
+        public Nullable<System.DateTime> expire_date { get; set; }
+
         public virtual Member Member { get; set; }
         public virtual Vacancy Vacancy { get; set; }
     }

@@ -244,9 +244,31 @@ namespace AccpSem3.Models.Repository
                         q.username = model.username;
                         q.password = model.password;
                         q.status = 3;
+                        q.expire_date = model.expire_date;
                         entities.SaveChanges();
                         return 1;
                     }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return 0;
+        }
+        public int UpdateDateCadidate()
+        {
+            try
+            {
+                using (var entities = new dbSem3Entities())
+                {
+                    var allCadidates = entities.Cadidates.ToList();
+                    foreach (var cadidate in allCadidates)
+                    {
+                        cadidate.updated_at = DateTime.Now;
+                    }
+                    entities.SaveChanges();
+                    return 1;
                 }
             }
             catch (Exception e)

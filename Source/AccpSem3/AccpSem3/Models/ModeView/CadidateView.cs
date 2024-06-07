@@ -19,5 +19,6 @@ namespace AccpSem3.Models.ModeView
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
         public string submit_cadidate_cadidate { get; set; }
+        public Nullable<System.DateTime> expire_date { get; set; }
     }
 }

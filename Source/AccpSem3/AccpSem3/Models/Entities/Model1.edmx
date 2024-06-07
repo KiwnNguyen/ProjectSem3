@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbSem3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbSem3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="id" />
@@ -44,6 +44,7 @@
           <Property Name="created_at" Type="datetime" />
           <Property Name="updated_at" Type="datetime" />
           <Property Name="submit_cadidate_cadidate" Type="nvarchar(max)" />
+          <Property Name="expire_date" Type="datetime" />
         </EntityType>
         <EntityType Name="CategoryOfQuestion">
           <Key>
@@ -110,6 +111,16 @@
           <Property Name="id_examination" Type="int" />
           <Property Name="created_at" Type="datetime" />
           <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Vacancies">
           <Key>
@@ -235,6 +246,7 @@
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionOfExamination" EntityType="Self.QuestionOfExamination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacancies" EntityType="Self.Vacancies" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Answer__id_quest__5DCAEF64" Association="Self.FK__Answer__id_quest__5DCAEF64">
             <End Role="Question" EntitySet="Question" />
@@ -269,8 +281,7 @@
             <End Role="Vacancies" EntitySet="Vacancies" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbSem3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -316,6 +327,7 @@
           <Property Name="submit_cadidate_cadidate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Cadidates__id_me__5FB337D6" FromRole="Cadidates" ToRole="Member" />
           <NavigationProperty Name="Vacancy" Relationship="Self.FK__Cadidates__id_va__60A75C0F" FromRole="Cadidates" ToRole="Vacancies" />
+          <Property Name="expire_date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="CategoryOfQuestion">
           <Key>
@@ -553,7 +565,18 @@
             <End Role="Question" EntitySet="Questions" />
             <End Role="QuestionOfExamination" EntitySet="QuestionOfExaminations" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="dbSem3Model.sysdiagram" />
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -588,6 +611,7 @@
           <EntitySetMapping Name="Cadidates">
             <EntityTypeMapping TypeName="dbSem3Model.Cadidate">
               <MappingFragment StoreEntitySet="Cadidates">
+                <ScalarProperty Name="expire_date" ColumnName="expire_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_member" ColumnName="id_member" />
                 <ScalarProperty Name="id_vacancy" ColumnName="id_vacancy" />
@@ -691,6 +715,17 @@
                 <ScalarProperty Name="dateline" ColumnName="dateline" />
                 <ScalarProperty Name="jobnature" ColumnName="jobnature" />
                 <ScalarProperty Name="featured" ColumnName="featured" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbSem3Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
