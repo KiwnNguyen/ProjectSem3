@@ -128,9 +128,7 @@ namespace AccpSem3.Controllers
                     if (HttpContext.Session["ExpireCadidate"] != null)
                     {
                         string t1 = HttpContext.Session["ExpireCadidate"] as string;
-                        DateTime timer = DateTime.Parse(t1);
-                        string timerCadi = timer.ToString("yyyy-MM-dd");
-                        ViewBag.dateExpire = timerCadi;
+                        ViewBag.dateExpire = t1;
                     }
                     string t = status1.ToString();
                     HttpContext.Session["idStatusCadi"] = t.ToString();
@@ -142,7 +140,6 @@ namespace AccpSem3.Controllers
             }
             return View();
         }
-
         [Authorize(Roles = "CADIDATE")]
         public ActionResult PageHistoryCadi()
         {

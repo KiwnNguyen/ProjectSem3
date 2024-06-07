@@ -1,10 +1,9 @@
 ﻿
 @{
     ViewBag.Title = "FormTestCadi";
-    DateTime dateTimeNow = DateTime.Now;
-
-    string dateNow = dateTimeNow.ToString("yyyy-MM-dd");
-    
+    string datecadi = ViewBag.dateExpire;
+    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+    var dateTimeTestNew = DateTime.Parse(datecadi, culture);
 }
 <div class="container-xxl py-5">
     <div class="container">
@@ -28,19 +27,17 @@
                     </li>
                 </ul>*@
             <div class="tab-content">
-                @if (dateNow.Equals(ViewBag.dateExpire))
+                @if (DateTime.Now >= dateTimeTestNew)
                 {
                     <div id="tab-1" class="tab-pane fade show p-0 active">
-
                         <h4>You can not this because expire day</h4>
                     </div>
+                    if (datecadi != null) { 
+                    }
                 }
                 else
                 {
                     <div id="tab-1" class="tab-pane fade show p-0 active">
-
-
-
                         <div class="job-item p-4 mb-4">
                             @if (HttpContext.Current.Session["idStatusCadi"] != null)
                             {
