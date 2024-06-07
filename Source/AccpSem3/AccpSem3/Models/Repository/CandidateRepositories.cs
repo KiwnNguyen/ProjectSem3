@@ -321,5 +321,76 @@ namespace AccpSem3.Models.Repository
             }
             return 0;
         }
+
+        //Get cadidate pass exam 
+
+        public ICollection<CadidatePassExam> GetCadidatesPassExam()
+        {
+            try
+            {
+                dbSem3Entities en = new dbSem3Entities();
+                var rs = en.Cadidates.Where(ca => ca.status == 0 && ca.score >= 10).ToList();
+                List<CadidatePassExam> cpe = new List<CadidatePassExam>();
+                foreach (var item in rs)
+                {
+                    var rsmb = en.Members.Where(mem => mem.id == item.id_member).FirstOrDefault();
+                    var rsva = en.Vacancies.Where(va => va.id == item.id_vacancy).FirstOrDefault();
+                    CadidatePassExam cadidatePassExam = new CadidatePassExam();
+                    cadidatePassExam.id = item.id;
+                    cadidatePassExam.id_member = item.id_member;
+                    cadidatePassExam.fullname = rsmb.fullname;
+                    cadidatePassExam.email = rsmb.email;
+                    cadidatePassExam.id_vacancy = item.id_vacancy;
+                    cadidatePassExam.title_vacancy = rsva.name;
+                    cadidatePassExam.concern_person = item.concern_person;
+                    cadidatePassExam.status = item.status;
+                    cadidatePassExam.score = item.score;
+                    cadidatePassExam.answer_of_cadidate = item.answer_of_cadidate;
+                    cadidatePassExam.submit_cadidate_cadidate = item.submit_cadidate_cadidate;
+                    cadidatePassExam.created_at = item.created_at;
+                    cadidatePassExam.updated_at = item.updated_at;
+                    cadidatePassExam.expire_date = item.expire_date;
+                    cpe.Add(cadidatePassExam);
+                }
+                return cpe;
+            }catch(Exception ex)
+            {
+                throw ex;  
+            }
+        }
+
+        public int SetInterview(int idcadi)
+        {
+            try
+            {
+                dbSem3Entities en = new dbSem3Entities();
+                var rs = en.Cadidates.Where(cadi => cadi.id == idcadi).FirstOrDefault();
+                if (rs != null && rs.status == 0)
+                {
+                    rs.status = 5;
+                    en.SaveChanges();
+                    return 1;
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Member GetMemberByIdCadidate(int idcadidate)
+        {
+            try
+            {
+                dbSem3Entities en = new dbSem3Entities();
+                var cadi = en.Cadidates.Where(ca => ca.id == idcadidate).FirstOrDefault();
+                var rs = en.Members.Where(me => me.id == cadi.id_member).FirstOrDefault();
+                return rs;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

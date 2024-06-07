@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "DetailsCandidate";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<main class="content-wrapper">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card">
+                <h6 class="card-title mb-2">Send Mail To Invite Interview</h6>
+                <div class="template-demo typography-demo">
+                    <div class="mdc-layout-grid__inner align-items-center">
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2 text-muted tx-14">
+                            Cadidate name:
+                        </div>
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                            <h1 class="mdc-typography--headline3">@ViewBag.cadi.fullname</h1>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__inner align-items-center">
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2 text-muted tx-14">
+                            Cadidate Email:
+                        </div>
+                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                            <h1 class="mdc-typography--headline3">@ViewBag.cadi.email</h1>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__inner align-items-center">
+                        <form method="post" action="">
+                            <textarea style="height: 250px; width: 1000px" placeholder="Type text to email" name="titleEmail"></textarea>
+                            <button class="btn btn-success" type="submit">Send Email</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</main>
+

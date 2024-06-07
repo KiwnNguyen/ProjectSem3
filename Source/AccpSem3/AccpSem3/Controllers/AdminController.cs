@@ -782,6 +782,17 @@ namespace AccpSem3.Controllers
             return View();
         }
 
+        public ActionResult ListPassExam()
+        {
+            ViewBag.lstPE = CandidateRepositories.Instance.GetCadidatesPassExam();
+            return View();
+        }
+
+        public ActionResult DetailsCandidate(int id)
+        {
+            ViewBag.cadi = CandidateRepositories.Instance.GetMemberByIdCadidate(id);
+            return View();
+        }
         
     }
 }

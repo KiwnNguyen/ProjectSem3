@@ -222,6 +222,7 @@
     </Compile>
     <Compile Include="Models\Linear\LinearRegressionModel.cs" />
     <Compile Include="Models\ModeView\AnswerView.cs" />
+    <Compile Include="Models\ModeView\CadidatePassExam.cs" />
     <Compile Include="Models\ModeView\CadidateView.cs" />
     <Compile Include="Models\ModeView\CategoryOfQuestionView.cs" />
     <Compile Include="Models\ModeView\DepartmentView.cs" />
@@ -4849,6 +4850,8 @@
     <Content Include="Views\Admin\PageAddDep.cshtml" />
     <Content Include="Views\Admin\PageUpdateDep.cshtml" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
+    <Content Include="Views\Admin\ListPassExam.cshtml" />
+    <Content Include="Views\Admin\DetailsCandidate.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
