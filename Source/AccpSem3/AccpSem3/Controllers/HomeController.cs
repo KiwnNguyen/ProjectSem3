@@ -400,7 +400,9 @@ namespace AccpSem3.Controllers
                 if (responsitories != null)
                 {
                     //int? id_mem = int.Parse(id);
-                    List<MemberView> members = MemberRepositories.Instance.GetById(id);
+                    string id_mem = HttpContext.Session["IdAccountUser"] as string;
+                    int id_part = int.Parse(id_mem);
+                    List<MemberView> members = MemberRepositories.Instance.GetById(id_part);
                     if (members != null)
                     {
                         foreach (MemberView item in members)

@@ -51,7 +51,7 @@ namespace AccpSem3.Models.Repository
                         join c in entities.Questions on b.id_question equals c.id
                         join d in entities.CategoryOfQuestions on c.id_categoryofquestion equals d.id
                         join e in entities.Answers on c.id equals e.id_question
-                        where a.id == id_q && d.id == 2
+                        where a.id == id_q && d.id == 1
                         select new QuestionJoin
                         {
                             examination = a,
@@ -79,7 +79,7 @@ namespace AccpSem3.Models.Repository
                         join c in entities.Questions on b.id_question equals c.id
                         join d in entities.CategoryOfQuestions on c.id_categoryofquestion equals d.id
                         join e in entities.Answers on c.id equals e.id_question
-                        where a.id == id_q && d.id == 3
+                        where a.id == id_q && d.id == 2
                         select new QuestionJoin
                         {
                             examination = a,
@@ -107,7 +107,7 @@ namespace AccpSem3.Models.Repository
                         join c in entities.Questions on b.id_question equals c.id
                         join d in entities.CategoryOfQuestions on c.id_categoryofquestion equals d.id
                         join e in entities.Answers on c.id equals e.id_question
-                        where a.id == id_q && d.id == 4
+                        where a.id == id_q && d.id == 3
                         select new QuestionJoin
                         {
                             examination = a,
