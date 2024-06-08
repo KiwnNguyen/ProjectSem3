@@ -4852,12 +4852,6 @@
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
     <Content Include="Views\Admin\ListPassExam.cshtml" />
     <Content Include="Views\Admin\DetailsCandidate.cshtml" />
-    <None Include="Web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="Web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4901,7 +4895,6 @@
     <Content Include="Views\Home\PageHistoryCadi.cshtml" />
     <Content Include="Views\Home\PageSendCv.cshtml" />
     <Content Include="Views\Home\ResultCadi.cshtml" />
-    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
