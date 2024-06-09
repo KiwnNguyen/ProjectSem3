@@ -5,6 +5,7 @@ using AccpSem3.Models.ModeView;
 using AccpSem3.Models.ModeView.ModelJoin;
 using AccpSem3.Models.Repository;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -484,6 +485,22 @@ namespace AccpSem3.Controllers
                         ModelMember.id = modelMem.id;
                         MemberRepositories.Instance.UpdateCv(ModelMember);
                         ViewBag.Info = "Nộp thành công";
+
+                        string username = HttpContext.Session["EmailAccountUser"] as string;
+                        HttpCookie cookie = Request.Cookies["candidateList"];
+                        List<PersonalCookie> cookiesList = new List<PersonalCookie>();
+
+                        if (cookie != null)
+                        {
+                            cookiesList = JsonConvert.DeserializeObject<List<PersonalCookie>>(cookie.Value);
+                        }
+
+                        cookiesList.Add(new PersonalCookie { Name = username, date = DateTime.Now.ToString() });
+
+                        cookie = new HttpCookie("candidateList");
+                        cookie.Value = JsonConvert.SerializeObject(cookiesList);
+                        cookie.Expires = DateTime.Now.AddDays(30); // Thiết lập thời gian hết hạn của cookie
+                        Response.Cookies.Add(cookie);
                         return RedirectToAction("index", "Home");
                     }
                 }

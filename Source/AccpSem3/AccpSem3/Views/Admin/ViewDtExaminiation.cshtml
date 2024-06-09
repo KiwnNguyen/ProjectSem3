@@ -100,7 +100,7 @@
                                                                             <span class="input-group-text" id="addon-wrapping">@c</span>
                                                                             <input type="text" id="qkqtexid+@c" value="@item.id" style="display:none" name="questionidlist" />
                                                                             <input type="text" class="form-control" value="@item.title" id="gkqtex+@c" disabled>
-                                                                            <span class="input-group-text" id="addon-wrapping"><button class="edit-questiongk-button dtqt" data-id="@item.id" type="button" data-toggle="modal" data-target="#questiondtModal">View question</button></span>                                                                            
+                                                                            <span class="input-group-text" id="addon-wrapping"><button class="edit-questiongk-button dtqt" data-id="@item.id" type="button" data-toggle="modal" data-target="#questiondtModal" onclick="GetIdAnswer(@item.id)">View question</button></span>                                                                            
                                                                         </div>
                                                                     </fieldset>
                                                                     c++;
@@ -128,7 +128,7 @@
                                                                             <span class="input-group-text" id="addon-wrapping">@c</span>
                                                                             <input type="text" id="mqtexid+@c" value="@item.id" style="display:none" name="questionidlist" />
                                                                             <input type="text" class="form-control" value="@item.title" id="mqtex+@c" disabled>
-                                                                            <span class="input-group-text" id="addon-wrapping"><button type="button" class="dtqt" data-id="@item.id">View question</button></span>
+                                                                            <span class="input-group-text" id="addon-wrapping"><button class="edit-questiongk-button dtqt" data-id="@item.id" type="button" data-toggle="modal" data-target="#questiondtModal" onclick="GetIdAnswer(@item.id)">View question</button></span>
                                                                         </div>
                                                                     </fieldset>
                                                                     c++;
@@ -156,7 +156,7 @@
                                                                             <span class="input-group-text" id="addon-wrapping">@c</span>
                                                                             <input type="text" id="ctqtexid+@c" value="@item.id" style="display:none" name="questionidlist" />
                                                                             <input type="text" class="form-control" value="@item.title" id="ctqtex+@c" disabled>
-                                                                            <span class="input-group-text" id="addon-wrapping"><button type="button" class="dtqt" data-id="@item.id">View question</button></span>                                                                                                                                                                                                                                        
+                                                                            <span class="input-group-text" id="addon-wrapping"><button class="edit-questiongk-button dtqt" data-id="@item.id" type="button" data-toggle="modal" data-target="#questiondtModal" onclick="GetIdAnswer(@item.id)">View question</button></span>
                                                                         </div>
                                                                     </fieldset>
                                                                         c++;
@@ -196,11 +196,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="ibox">
-                        <div class="ibox-head">
-                            <h2 class="ibox-title">List Computer Technology</h2>
+                        <div class="modal-body">
+                            <div id="content_new"></div>
                         </div>
                         <div class="ibox-body">
-
                         </div>
                     </div>
                 </div>
