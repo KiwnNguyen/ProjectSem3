@@ -1,39 +1,63 @@
-﻿
+﻿@model AccpSem3.Models.ModeView.ModelJoin.ScheduleInter 
 @{
     ViewBag.Title = "DetailsCandidate";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+
 }
-
-
-
 <main class="content-wrapper">
     <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
             <div class="mdc-card">
                 <h6 class="card-title mb-2">Send Mail To Invite Interview</h6>
+                @*@if (HttpContext.Current.Session["info1"] != null)
+                {
+                    <h6 class="card-title mb-2">@HttpContext.Current.Session["info1"]</h6>
+
+                }*@
                 <div class="template-demo typography-demo">
-                    <div class="mdc-layout-grid__inner align-items-center">
-                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2 text-muted tx-14">
-                            Cadidate name:
+                    <form method="post" action="/Admin/CreateScheduleInterview">
+                        <div class="mdc-layout-grid__inner align-items-center">
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2 text-muted tx-14">
+                                Cadidate Name:
+                            </div>
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                                <h1 class="mdc-typography--headline3">@ViewBag.cadi.fullname</h1>
+                                <input type="text" name="nameCandi" value="@ViewBag.cadi.fullname @Model.nameCandi" style="display:none" />
+                            </div>
                         </div>
-                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                            <h1 class="mdc-typography--headline3">@ViewBag.cadi.fullname</h1>
+                        <div class="mdc-layout-grid__inner align-items-center">
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2 text-muted tx-14">
+                                Cadidate Email:
+                            </div>
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                                <h1 class="mdc-typography--headline3">@ViewBag.cadi.email</h1>
+                                <input type="text" name="email" value="@ViewBag.cadi.email @Model.email " style="display: none" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="mdc-layout-grid__inner align-items-center">
-                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2 text-muted tx-14">
-                            Cadidate Email:
+                        <br class="mb-5" />
+                        <div class="mdc-layout-grid__inner align-items-center">
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2 text-muted tx-14">
+                                Start Time
+                            </div>
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                                <input type="text" id="basic-default-datetime" class="mdi-camera-timer" name="start_time" data-flatpickr="datetime" value="@Model.start_time" style="border-radius:10px; width: 480px; text-align:center" placeholder="Select Time Start">
+                            </div>
                         </div>
-                        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
-                            <h1 class="mdc-typography--headline3">@ViewBag.cadi.email</h1>
+                        <br class="mb-5" />
+                        <br class="mb-5" />
+                        <div class="mdc-layout-grid__inner align-items-center">
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2 text-muted tx-14">
+                                End Time
+                            </div>
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-10">
+                                <input type="text" id="basic-default-datetime" class="mdi-camera-timer" name="end_time" data-flatpickr="datetime" value="@Model.end_time" style="border-radius:10px; width: 480px; text-align:center" placeholder="Select Time End">
+                            </div>
                         </div>
-                    </div>
-                    <div class="mdc-layout-grid__inner align-items-center">
-                        <form method="post" action="">
-                            <textarea style="height: 250px; width: 1000px" placeholder="Type text to email" name="titleEmail"></textarea>
-                            <button class="btn btn-success" type="submit">Send Email</button>
-                        </form>
-                    </div>
+                        <br class="mb-5" />
+                        <button class="btn btn-success" type="submit">Create</button>
+
+                    </form>
                 </div>
             </div>
 

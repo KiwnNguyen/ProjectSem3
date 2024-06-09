@@ -234,17 +234,12 @@ namespace AccpSem3.Controllers
                     }
 
                 }
-
-
-
                 IEnumerable<CadidateView> listCadidate_status = CandidateRepositories.Instance.GetByNameStatus(name);
                 var dataCandidate = listCadidate_status.Select(ev => new
                 {
                     id = ev.id,
                     status = ev.status
                 }).ToList();
-
-
                 int? id_vacacy = 0;
                 foreach (var cadidateView in listCaidate)
                 {
@@ -259,7 +254,6 @@ namespace AccpSem3.Controllers
                 IEnumerable<QuestionJoin> listQuesstion = QuestionRepositories.Instance.GetById(id_examine);
                 var dataQuestion = listQuesstion.Select(ev => new
                 {
-
                     id = ev.question.id,
                     title = ev.question.title,
                     id_categoryofquestion = ev.question.id_categoryofquestion,
@@ -287,7 +281,6 @@ namespace AccpSem3.Controllers
                     is_correct = ev.answer.is_correct,
                     title_answer = ev.answer.title,
                 }).ToList();
-
                 //III
                 IEnumerable<QuestionJoin> listQuesstion2 = QuestionRepositories.Instance.GetById2(id_examine);
                 var dataQuestion2 = listQuesstion2.Select(ev => new
@@ -301,11 +294,7 @@ namespace AccpSem3.Controllers
                     title_answer = ev.answer.title,
                     is_correct = ev.answer.is_correct,
                 }).ToList();
-
-
-
                 //variable Datas for droped variable combinedData
-
                 var combinedData = new
                 {
                     Data = dataQuestion,
@@ -334,13 +323,7 @@ namespace AccpSem3.Controllers
                 if (answers != null)
                 {
                     LinearRegressionModel model = new LinearRegressionModel();
-                    IEnumerable<QuestionJoin> trainingData1 = AnswerRepositories.Instance.GetListAnswerQuestionCategory();
-                    model.Train(trainingData1, answers);
-                    //List<AnswerView> testAnswer = AnswerRepositories.Instance.GetListAnswerQuestionCategory()();
-                    //Answer answer = new Answer
-                    //{
-                    //    title = testAnswer[0].title.ToString()//lấy title của phần tư
-                    //};
+                    model.Train(answers);
                 }
                 return RedirectToAction("ResultCadi", "Home");
             }

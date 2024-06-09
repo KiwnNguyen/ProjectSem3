@@ -232,6 +232,7 @@
     <Compile Include="Models\ModeView\ModelJoin\QuesAndExam.cs" />
     <Compile Include="Models\ModeView\ModelJoin\QuestionJoin.cs" />
     <Compile Include="Models\ModeView\ModelJoin\QuestionJoinView.cs" />
+    <Compile Include="Models\ModeView\ModelJoin\ScheduleInter.cs" />
     <Compile Include="Models\ModeView\ModelJoin\ScoreResultCadi.cs" />
     <Compile Include="Models\ModeView\QuestionOfExamineView.cs" />
     <Compile Include="Models\ModeView\QuestionView.cs" />
@@ -278,6 +279,7 @@
     <Content Include="Content\Assets\Admin\images\faces\face8.jpg" />
     <Content Include="Content\Assets\Admin\images\faces\face9.jpg" />
     <Content Include="Content\Assets\Admin\images\favicon.png" />
+    <Content Include="Content\Assets\Admin\images\logo.jpg" />
     <Content Include="Content\Assets\Admin\images\logo.svg" />
     <Content Include="Content\Assets\Admin\images\sidebar\sidebar-bg.jpg" />
     <Content Include="Content\Assets\Admin\js\chartjs.js" />
@@ -4895,6 +4897,13 @@
     <Content Include="Views\Home\PageHistoryCadi.cshtml" />
     <Content Include="Views\Home\PageSendCv.cshtml" />
     <Content Include="Views\Home\ResultCadi.cshtml" />
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
