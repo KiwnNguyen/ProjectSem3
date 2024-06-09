@@ -242,7 +242,7 @@ namespace AccpSem3.Controllers
             }
             return null;
         }
-
+       
         public ActionResult PageViewDetailExa(int? id)
         {
             try
@@ -779,7 +779,6 @@ namespace AccpSem3.Controllers
             ViewBag.listqtgk = listqtgk;
             ViewBag.listqtm = listqtm;
             ViewBag.listqtct = listqtct;
-
             ViewBag.qtgk = QuestionRepository.Instance.GetQuestionByCategory(1);
             ViewBag.qtm = QuestionRepository.Instance.GetQuestionByCategory(2);
             ViewBag.qtct = QuestionRepository.Instance.GetQuestionByCategory(3);

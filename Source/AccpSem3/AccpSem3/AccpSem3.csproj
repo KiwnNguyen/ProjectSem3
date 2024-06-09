@@ -228,6 +228,7 @@
     <Compile Include="Models\ModeView\DepartmentView.cs" />
     <Compile Include="Models\ModeView\ExamineView.cs" />
     <Compile Include="Models\ModeView\MemberView.cs" />
+    <Compile Include="Models\ModeView\ModelJoin\PersonalCookie.cs" />
     <Compile Include="Models\ModeView\ModelJoin\QuantityAttention.cs" />
     <Compile Include="Models\ModeView\ModelJoin\QuesAndExam.cs" />
     <Compile Include="Models\ModeView\ModelJoin\QuestionJoin.cs" />
