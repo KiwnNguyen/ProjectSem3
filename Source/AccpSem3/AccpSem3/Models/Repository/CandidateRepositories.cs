@@ -329,7 +329,7 @@ namespace AccpSem3.Models.Repository
             try
             {
                 dbSem3Entities en = new dbSem3Entities();
-                var rs = en.Cadidates.Where(ca => ca.status == 0 && ca.score >= 10).ToList();
+                var rs = en.Cadidates.Where(ca => ca.status > 4 || ca.status == 0).ToList();
                 List<CadidatePassExam> cpe = new List<CadidatePassExam>();
                 foreach (var item in rs)
                 {
@@ -353,9 +353,9 @@ namespace AccpSem3.Models.Repository
                     cpe.Add(cadidatePassExam);
                 }
                 return cpe;
-            }catch(Exception ex)
+            } catch (Exception ex)
             {
-                throw ex;  
+                throw ex;
             }
         }
 
@@ -387,10 +387,120 @@ namespace AccpSem3.Models.Repository
                 var cadi = en.Cadidates.Where(ca => ca.id == idcadidate).FirstOrDefault();
                 var rs = en.Members.Where(me => me.id == cadi.id_member).FirstOrDefault();
                 return rs;
-            }catch(Exception ex)
+            } catch (Exception ex)
             {
                 throw ex;
             }
+        }
+        public int Candide_scheduleAccept(int id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    dbSem3Entities entities = new dbSem3Entities();
+                    var q = entities.Cadidates.Find(id);
+                    if (q != null)
+                    {
+                        q.status = 5;
+                        entities.SaveChanges();
+                        return 1;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return 0;
+        }
+        public int Cadide_ScheduleRefund(int id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    dbSem3Entities entities = new dbSem3Entities();
+                    var q = entities.Cadidates.Find(id);
+                    if (q != null)
+                    {
+                        q.status = 6;
+                        entities.SaveChanges();
+                        return 1;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return 0;
+        }
+        public int Cadide_AcceptJoin(int id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    dbSem3Entities entities = new dbSem3Entities();
+                    var q = entities.Cadidates.Find(id);
+                    if (q != null)
+                    {
+                        q.status = 7;
+                        entities.SaveChanges();
+                        return 1;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return 0;
+        }
+        public int Cadide_RefundJoin(int id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    dbSem3Entities entities = new dbSem3Entities();
+                    var q = entities.Cadidates.Find(id);
+                    if (q != null)
+                    {
+                        q.status = 8;
+                        entities.SaveChanges();
+                        return 1;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return 0;
+        }
+        public int Cadide_View9(int id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    dbSem3Entities entities = new dbSem3Entities();
+                    var q = entities.Cadidates.Find(id);
+                    if (q != null)
+                    {
+                        q.status = 9;
+                        entities.SaveChanges();
+                        return 1;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return 0;
         }
     }
 }

@@ -336,7 +336,10 @@ namespace AccpSem3.Controllers
                             ViewBag.salary1 = item.salary;
                             ViewBag.dateline1 = item.dateline;
                             ViewBag.id = item.id;
-
+                            int? featured = item.featured;
+                            string feature_part = featured.ToString();
+                            ViewBag.feature = feature_part;
+                            ViewBag.jobnature = item.jobnature;
                         }
                     }
                     return View(view);
@@ -791,9 +794,19 @@ namespace AccpSem3.Controllers
 
         public ActionResult DetailsCandidate(int id)
         {
-            ScheduleInter schedule = new ScheduleInter();
-            ViewBag.cadi = CandidateRepositories.Instance.GetMemberByIdCadidate(id);
-            return View(schedule);
+            try
+            {
+                ScheduleInter schedule = new ScheduleInter();
+                ViewBag.cadi = CandidateRepositories.Instance.GetMemberByIdCadidate(id);
+                ViewBag.id_cadi = id;
+                return View(schedule);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+
         }
         [HttpPost]
         public ActionResult CreateScheduleInterview(ScheduleInter model)
@@ -802,6 +815,9 @@ namespace AccpSem3.Controllers
             {
                 if (model != null)
                 {
+                    string id_cadid = Request.Params["id_cadi"];
+                    string t1 = id_cadid.ToString();
+                    int id_cadi_Part = int.Parse(t1);
                     string nameCandi = model.nameCandi;
                     string emailConfirm = model.email;
                     string start_Time = model.start_time;
@@ -829,11 +845,81 @@ namespace AccpSem3.Controllers
                     int ResultStatus = EmailSender.Instance.SendEmail(from, emailConfirm, subject, body);
                     if(ResultStatus > 0)
                     {
-                       HttpContext.Session["info1"] = "Create Schedule Success";
+                        int r = CandidateRepositories.Instance.Candide_scheduleAccept(id_cadi_Part);
+                        if (r > 0)
+                        {
+                            HttpContext.Session["info1"] = "Create Schedule Success";
+                        }
                     }
-                    return RedirectToAction("Page", "");
+                    return RedirectToAction("ListPassExam", "Admin");
                 }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
+        public ActionResult PageStatus6(int id)
+        {
+            try
+            {
+                if (id != null)
+                {
+                    int t = CandidateRepositories.Instance.Cadide_ScheduleRefund(id);
 
+                    return RedirectToAction("ListPassExam", "Admin");
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
+        public ActionResult PageStatus7(int id)
+        {
+            try
+            {
+                if (id != null)
+                {
+                    int t = CandidateRepositories.Instance.Cadide_AcceptJoin(id);
+
+                    return RedirectToAction("ListPassExam", "Admin");
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
+        public ActionResult PageStatus8(int id)
+        {
+            try
+            {
+                if (id != null)
+                {
+                    int t = CandidateRepositories.Instance.Cadide_RefundJoin(id);
+
+                    return RedirectToAction("ListPassExam", "Admin");
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return null;
+        }
+        public ActionResult PageStatus9(int id)
+        {
+            try
+            {
+                if (id != null)
+                {
+                    int t = CandidateRepositories.Instance.Cadide_View9(id);
+                    return RedirectToAction("ListPassExam", "Admin");
+                }
             }
             catch (Exception e)
             {

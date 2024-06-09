@@ -23,7 +23,7 @@
             <div class="mdc-card">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <h2 class="ibox-title">LIST CANDIDATE PASS EXAM</h2>                        
+                        <h2 class="ibox-title">LIST CANDIDATE PASS EXAM</h2>
                     </div>
                     <div class="ibox-body">
                         <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
@@ -31,10 +31,11 @@
                                 <tr>
                                     <th class="text-left">#</th>
                                     <th style="text-align: center">Full Name</th>
-                                    <th style="text-align: center">Email</th>
                                     <th style="text-align: center">Job</th>
                                     <th style="text-align: center">Score Exam</th>
-                                    <th style="text-align: center">Concern Person</th>
+                                    <th style="text-align: center">Agree</th>
+                                    <th style="text-align: center">Status</th>
+                                    <th style="text-align: center">Refuse</th>
                                     <th style="text-align: center">Set Interview</th>
                                 </tr>
                             </thead>
@@ -44,14 +45,95 @@
                                     <tr>
                                         <td class="text-left">@c</td>
                                         <td style="text-align: center">@item.fullname</td>
-                                        <td style="text-align: center">@item.email</td>
                                         <td style="text-align: center">@item.title_vacancy</td>
                                         <td style="text-align: center">@item.score</td>
-                                        <td style="text-align: center">@item.concern_person</td>
                                         <td style="text-align: center">
-                                            <a class="button-with-icon" id="" href="@Url.Action("DetailsCandidate","Admin",new {id = item.id})">
-                                                <i class="fa-solid fa-pen-to-square"></i> <!-- Biểu tượng cho trạng thái Bật -->
-                                            </a>
+                                            @if (item.status == 0)
+                                            {
+                                                <a class="button-with-icon" id="ViewDetailsVan">
+                                                    <i class="fa-solid fa-street-view"></i><!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+                                            @if (item.status == 5)
+                                            {
+                                                <a class="button-with-icon" id="" href="@Url.Action("PageStatus7","Admin",new {id =item.id})">
+                                                    <i class="fa-solid fa-check" style="color:green"></i><!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+                                            @if (item.status == 6 || item.status == 7 || item.status == 8)
+                                            {
+                                                <a class="button-with-icon" id="ViewDetailsVan">
+                                                    <i class="fa-solid fa-check"></i><!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+                                        </td>
+                                        <td style="text-align: center">
+                                            @if (item.status == 0)
+                                            {
+                                                <p>Đã hoàn thành bài test</p>
+
+                                            }
+                                            @if (item.status == 9)
+                                            {
+                                                <p>Đang xem xét</p>
+                                            }
+                                            @if (item.status == 5)
+                                            {
+                                                <p>Đồng ý lên lịch</p>
+                                            }
+                                            @if (item.status == 6)
+                                            {
+                                                <p>Từ chối lên lịch</p>
+                                            }
+                                            @if (item.status == 7)
+                                            {
+                                                <p>Được chọn</p>
+                                            }
+                                            @if (item.status == 8)
+                                            {
+                                                <p>Không được chọn</p>
+                                            }
+                                        </td>
+                                        <td style="text-align: center">
+                                            @if (item.status == 0)
+                                            {
+                                                <a class="button-with-icon" id="" href="@Url.Action("PageStatus9","Admin",new {id = item.id})">
+                                                    <i class="fa-solid fa-street-view"></i><!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+                                            @if (item.status == 9)
+                                            {
+                                                <a class="button-with-icon" id="" href="@Url.Action("PageStatus6","Admin",new {id = item.id})">
+                                                    <i class="fa-solid fa-x" style="color:orangered"></i> <!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+                                            @if (item.status == 5)
+                                            {
+                                                <a class="button-with-icon" id="" href="@Url.Action("PageStatus8","Admin",new {id = item.id})">
+                                                    <i class="fa-solid fa-x" style="color:red"></i> <!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+                                            @if (item.status == 6 || item.status == 7 || item.status == 8)
+                                            {
+                                                <a class="button-with-icon" id="ViewDetailsVan">
+                                                    <i class="fa-solid fa-x"></i><!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+                                        </td>
+                                        <td style="text-align: center">
+                                            @if (item.status == 9)
+                                            {
+                                                <a class="button-with-icon" id="" href="@Url.Action("DetailsCandidate","Admin",new {id = item.id})">
+                                                    <i class="fa-solid fa-pen-to-square"></i> <!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="button-with-icon" id="ViewDetailsVan">
+                                                    <i class="fa-solid fa-pen-to-square"></i> <!-- Biểu tượng cho trạng thái Bật -->
+                                                </a>
+                                            }
+
                                         </td>
                                     </tr>
                                     c++;
