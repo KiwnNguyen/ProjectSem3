@@ -44,6 +44,75 @@ namespace AccpSem3.Models.Repository
             return null;
 
         }
+        public List<QuestionJoin> GetQuestionI(int id)
+        {
+            try
+            {
+                dbSem3Entities entities = new dbSem3Entities();
+                var q = from a in entities.Questions
+                        join b in entities.CategoryOfQuestions on a.id_categoryofquestion equals b.id
+                        join c in entities.Answers on a.id equals c.id_question
+                        where b.id == 1 && c.is_correct == 1 && a.id == id 
+                        select new QuestionJoin
+                        {
+                            question = a,
+                            category = b,
+                            answer  = c
+                        };
+                return q.ToList();
+            }
+            catch (Exception e)
+            {
+
+            }
+            return null;
+        }
+        public List<QuestionJoin> GetQuestionII(int id)
+        {
+            try
+            {
+                dbSem3Entities entities = new dbSem3Entities();
+                var q = from a in entities.Questions
+                        join b in entities.CategoryOfQuestions on a.id_categoryofquestion equals b.id
+                        join c in entities.Answers on a.id equals c.id_question
+                        where b.id == 2 && c.is_correct == 1 && a.id == id
+                        select new QuestionJoin
+                        {
+                            question = a,
+                            category = b,
+                            answer = c
+                        };
+                return q.ToList();
+            }
+            catch (Exception e)
+            {
+
+            }
+            return null;
+        }
+        public List<QuestionJoin> GetQuestionIII(int id)
+        {
+            try
+            {
+                dbSem3Entities entities = new dbSem3Entities();
+                var q = from a in entities.Questions
+                        join b in entities.CategoryOfQuestions on a.id_categoryofquestion equals b.id
+                        join c in entities.Answers on a.id equals c.id_question
+                        where b.id == 3 && c.is_correct == 1 && a.id == id
+                        select new QuestionJoin
+                        {
+                            question = a,
+                            category = b,
+                            answer = c
+                        };
+                return q.ToList();
+            }
+            catch (Exception e)
+            {
+
+            }
+            return null;
+        }
         public IEnumerable<QuestionJoin> GetListAnswerQuestionCategory()
         {
             try

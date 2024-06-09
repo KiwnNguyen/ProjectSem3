@@ -195,6 +195,10 @@
                                             <label for="recipient-name" class="col-form-label">Expire Date:</label>
                                             <input type="text" id="basic-default-datetime" class="mdi-camera-timer" name="dateline" data-flatpickr="datetime" value="" style="border-radius:10px; width: 480px; text-align:center">
                                         </div>
+                                        @foreach (AccpSem3.Models.ModeView.MemberView item in ls)
+                                        {
+                                            <input type="text" id="" class="" name="email"  value="@item.email" style="display:none"/>
+                                        }
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

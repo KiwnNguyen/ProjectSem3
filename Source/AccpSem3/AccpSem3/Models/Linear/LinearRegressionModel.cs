@@ -6,138 +6,136 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace AccpSem3.Models.Linear
 {
     public class LinearRegressionModel
     {
-        private double[] coefficients;
-
-        public struct TrainingResult
+        public int Train(List<string> answers)
         {
-            public double[] Coefficients;
-            public int Score;
-        }
-
-        public TrainingResult Train(IEnumerable<QuestionJoin> trainingData, List<string> answers)
-        {
-            List<QuestionJoin> trainingDataList = trainingData.ToList();
-            int numFeatures = trainingDataList[0].examination.title.Length;
-
-            int numInstances = trainingDataList.Count;
-
-            double[][] x = new double[numInstances][];
-            double[] y = new double[numInstances];
-            int score = 0;
-            int score1 = 0;
-            int score2 = 0;
-            int totalScore = 0;
-            // Chuyển đổi dữ liệu huấn luyện thành ma trận đặc trưng x và vector giá trị y
-            foreach (string listanswers in answers)
+            try
             {
-                for (int i = 0; i < numInstances; i++)
+                int score = 0;
+                int score1 = 0;
+                int score2 = 0;
+                int totalScore = 0;
+               
+                Dictionary<string, int> correctAnswers = new Dictionary<string, int>();
+
+                foreach (string listanswers in answers)
                 {
-                    x[i] = new double[numFeatures];
-                    for (int j = 0; j < numFeatures; j++)
+                    //string word = new string(listanswers.Where(c => char.IsLetter(c) && c != ' ').ToArray());
+                    string[] parts = listanswers.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    // Lấy phần tử đầu tiên (ký tự + và a)
+                    // Lấy phần tử thứ hai (số 17)
+                    int kitu = parts.Length - 1;
+                    string word = string.Join(" ", parts.Take(kitu));
+                    string number = parts[parts.Length - 1];
+                    if (int.TryParse(number, out int id))
                     {
-                        if (j < trainingDataList[i].examination.title.Length)
-                        {
-                            x[i][j] = (double)trainingDataList[i].examination.title[j];// Chuyển đổi ký tự thành giá trị số
-                        }
-                        else
-                        {
-                            string t = "";
-                        }
+                        // Chuyển đổi chuỗi "number" thành số nguyên
+                        Console.WriteLine("ID: " + id);
                     }
-                    //y[i] = trainingDataList[i].answer.Is_correct1 ? 1.0 : 0.0; // Gán giá trị đúng/sai cho vector giá trị y
-                                                                               // Kiểm tra đáp án đúng/sai
-                    if (trainingDataList[i].answer.title == listanswers)
+                    else
                     {
-                        if (trainingDataList[i].category.id == 2)
+                        Console.WriteLine("Chuỗi 'number' không phải là số hợp lệ.");
+                    }
+                    List<QuestionJoin> questionJoins1 = AnswerRepositories.Instance.GetQuestionI(id);
+                    List<QuestionJoin> questionJoins2 = AnswerRepositories.Instance.GetQuestionII(id);
+                    List<QuestionJoin> questionJoins3 = AnswerRepositories.Instance.GetQuestionIII(id);
+                    if (questionJoins1 != null)
+                    {
+                        foreach (QuestionJoin item1 in questionJoins1)
                         {
-                            if (trainingDataList[i].answer.is_correct == 1)
+                            if (item1.answer.title.Equals(word))
                             {
                                 score++;
                             }
                         }
-                        if (trainingDataList[i].category.id == 3)
+                    }
+                    if (questionJoins2 != null)
+                    {
+                        foreach (QuestionJoin item2 in questionJoins2)
                         {
-                            if (trainingDataList[i].answer.is_correct == 1)
+                            if (item2.answer.title.Equals(word))
                             {
                                 score1++;
                             }
                         }
-                        if (trainingDataList[i].category.id == 4)
+                    }
+                    if (questionJoins3 != null)
+                    {
+                        foreach (QuestionJoin item3 in questionJoins3)
                         {
-                            if (trainingDataList[i].answer.is_correct == 1)
+                            if (item3.answer.title.Equals(word))
                             {
+
                                 score2++;
                             }
                         }
-
                     }
                 }
-            }
-
-            HttpContext.Current.Session["ScorePhanI"] = score;
-            HttpContext.Current.Session["ScorePhanII"] = score1;
-            HttpContext.Current.Session["ScorePhanIII"] = score2;
-            totalScore = score + score1 + score2;
-
-            string account = HttpContext.Current.Session["AccountNameCadidate"] as string;
-            IEnumerable<ScoreResultCadi> values = AnswerRepositories.Instance.GetResultCadi(account);
-            string questions = null;
-            string answersJson = "[";
-            foreach (ScoreResultCadi value in values)
-            {
-                string question = value.question.title;
-                string answer = value.answer.title;
-                if (questions == null)
+                totalScore = score + score1 + score2;
+                HttpContext.Current.Session["ScorePhanI"] = score;
+                HttpContext.Current.Session["ScorePhanII"] = score1;
+                HttpContext.Current.Session["ScorePhanIII"] = score2;
+                string account = HttpContext.Current.Session["AccountNameCadidate"] as string;
+                IEnumerable<ScoreResultCadi> values = AnswerRepositories.Instance.GetResultCadi(account);
+                string questions = null;
+                string answersJson = "[";
+                foreach (ScoreResultCadi value in values)
                 {
-                    questions = question;
+                    string question = value.question.title;
+                    string answer = value.answer.title;
+                    if (questions == null)
+                    {
+                        questions = question;
+                    }
+                    // Thêm giá trị answer vào chuỗi JSON
+                    answersJson += "{";
+                    answersJson += "\"question\": \"" + question + "\",";
+                    answersJson += "\"answer\": \"" + answer + "\"";
+                    answersJson += "},";
                 }
-                // Thêm giá trị answer vào chuỗi JSON
-                answersJson += "{";
-                answersJson += "\"question\": \"" + question + "\",";
-                answersJson += "\"answer\": \"" + answer + "\"";
-                answersJson += "},";
-            }
-            // Xóa dấu "," cuối cùng trong chuỗi JSON
-            if (answersJson.EndsWith(","))
-            {
-                answersJson = answersJson.Remove(answersJson.Length - 1);
-            }
-            answersJson += "]";
-
-            // submit Answer of Candidate
-
-            List<Dictionary<string, string>> answerList = new List<Dictionary<string, string>>();
-            foreach (string answer in answers)
-            {
-                Dictionary<string, string> answerDict = new Dictionary<string, string>();
-                answerDict.Add("answer", answer);
-                answerList.Add(answerDict);
-            }
-
-            string answerJsonOfCandidate = JsonConvert.SerializeObject(answerList);
-
-
-            if (values != null && answerJsonOfCandidate != null)
-            {
-                List<CadidateView> caivi = CandidateRepositories.Instance.GetById(account);
-                int id = 0;
-                foreach (CadidateView te in caivi)
+                // Xóa dấu "," cuối cùng trong chuỗi JSON
+                if (answersJson.EndsWith(","))
                 {
-                    id = te.id;
+                    answersJson = answersJson.Remove(answersJson.Length - 1);
                 }
-                CandidateRepositories.Instance.UpdateCadi(id, totalScore, answersJson, answerJsonOfCandidate);
+                answersJson += "]";
+                // submit Answer of Candidate
+                List<Dictionary<string, string>> answerList = new List<Dictionary<string, string>>();
+                foreach (string listanswers in answers)
+                {
+                    string[] parts = listanswers.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    // Lấy phần tử thứ hai (số 17)
+                    int kitu = parts.Length - 1;
+                    string word = string.Join(" ", parts.Take(kitu));
+
+                    Dictionary<string, string> answerDict = new Dictionary<string, string>();
+                    answerDict.Add("answer", word);
+                    answerList.Add(answerDict);
+                }
+                string answerJsonOfCandidate = JsonConvert.SerializeObject(answerList);
+                if (values != null && answerJsonOfCandidate != null)
+                {
+                    List<CadidateView> caivi = CandidateRepositories.Instance.GetById(account);
+                    int id = 0;
+                    foreach (CadidateView te in caivi)
+                    {
+                        id = te.id;
+                    }
+                    CandidateRepositories.Instance.UpdateCadi(id, totalScore, answersJson, answerJsonOfCandidate);
+                }
+                HttpContext.Current.Session["ScoreCadi"] = totalScore;
+                return 1;
             }
-            // Huấn luyện mô hình hồi quy tuyến tính
-            
-            // Lấy các hệ số hồi quy từ mô hình
-            
-            HttpContext.Current.Session["ScoreCadi"] = totalScore;
-            return new TrainingResult { Score = score };
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return  0;
         }
     }
 }
