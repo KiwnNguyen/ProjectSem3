@@ -18,18 +18,18 @@
                                     <input type="text" id="basic-default-datetime" class="mdi-camera-timer" name="dateline" data-flatpickr="datetime" value="@ViewBag.dateline1 @Model.dateline" style="border-radius:10px; width: 480px; text-align:center">
                                 </div>
                             </div>
-                            <div class="input-group input-group-sm mb-3  mdc-layout-grid__cell--span-6-desktop">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Salary</span>
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                                    <label for="" class="mdc-floating-label">Salary: </label>
+                                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="border-radius: 10px; width: 470px ; height: 40px; text-align:center" name="salary" value="@ViewBag.salary1 @Model.salary">
                                 </div>
-                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="border-radius: 10px; width: 470px ; height: 40px; text-align:center" name="salary" value="@ViewBag.salary1 @Model.salary">
                             </div>
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
                                     <label for="" class="mdc-floating-label">Jobnature: </label>
                                     <select name="jobnature" id="jobnature" class="mdc-select--focused" style="border-radius: 10px; width: 480px; text-align:center">
-                                        <option value="FULL TIME">Full Time</option>
-                                        <option value="PART TIME">Part Time</option>
+                                        <option value="FULL TIME" @(ViewBag.jobnature == "FULL TIME" ? "selected" : "")>Full Time</option>
+                                        <option value="PART TIME" @(ViewBag.jobnature == "PART TIME" ? "selected" : "")>Part Time</option>
                                     </select>
                                 </div>
                             </div>
@@ -37,16 +37,16 @@
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
                                     <label for="" class="mdc-floating-label">Featured: </label>
                                     <select name="featured" id="featured" class="mdc-select--focused" style="border-radius: 10px; width: 480px; text-align:center">
-                                        <option value="1">Nổi bật</option>
-                                        <option value="2">Không nổi bật</option>
+                                        <option value="1" @(ViewBag.feature?.ToString() == "1" ? "selected" : "")>Nổi bật</option>
+                                        <option value="2" @(ViewBag.feature?.ToString() == "2" ? "selected" : "")>Không nổi bật</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="input-group input-group-sm mb-3  mdc-layout-grid__cell--span-6-desktop">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">Quantity of cursiment</span>
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                                    <label for="" class="mdc-floating-label">Quantity of cursiment: </label>
+                                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="border-radius: 10px; width: 470px ; height: 40px; text-align:center" name="quantity_emp" value="@ViewBag.quantity @Model.quantity_emp">
                                 </div>
-                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="border-radius: 10px; width: 470px ; height: 40px; text-align:center" name="quantity_emp" value="@ViewBag.quantity @Model.quantity_emp">
                             </div>
                             <div class="input-group input-group-sm mb-3  mdc-layout-grid__cell--span-6-desktop">
                             </div>

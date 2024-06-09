@@ -7,6 +7,7 @@ namespace AccpSem3.Models.ModeView.ModelJoin
 {
     public class ScheduleInter
     {
+        public int id_cadi { get; set; }
         public string nameCandi { get; set; }
         public string email { get; set; }
         public string start_time { get; set; }
