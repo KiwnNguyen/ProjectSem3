@@ -20,5 +20,6 @@ namespace AccpSem3.Models.ModeView
         public string work_experience { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
+        public string test { get; set; }
     }
 }
