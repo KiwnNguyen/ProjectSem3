@@ -4,24 +4,8 @@
 
 
 }
-
-
 <!-- / menu -->
-<!-- catg header banner section -->
-<section id="aa-catg-head-banner">
-    <div class="aa-catg-head-banner-area">
-        <div class="container">
-            <div class="aa-catg-head-banner-content">
-                <h2>Account Page</h2>
-                <ol class="breadcrumb">
-                    <li><a href="index.html"></a></li>
-                    <li class="active"></li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- / catg header banner section -->
+
 <!-- Cart view section -->
 <section id="aa-myaccount">
     <div class="container">
@@ -33,14 +17,16 @@
                             <div class="aa-myaccount-login">
                                 <h4>Login</h4>
                                 <form action="/Login/PageLogin1" class="aa-login-form" method="post">
-                                    <label for="">Username or Email address<span>*</span></label>
-                                    <input type="text" placeholder="Username or email" name="Email">
-                                    <hr class="class=" m-4" />
-                                    <label for="">Password<span>*</span></label>
-                                    <input type="password" placeholder="Password" name="Pass">
+                                    <div class="form-group">
+                                        <label for="">Username or Email address<span>*</span></label>
+                                        <input type="text" class="form-control" placeholder="Username or email" name="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Password<span>*</span></label>
+                                        <input type="password" class="form-control" placeholder="Password" name="Pass">
+                                    </div>
                                     <br />
-                                    <br />
-                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <button type="submit" class="btn btn-primary" style="display: block; margin: 0 auto;">Login</button>
                                     @*<p class="aa-lost-password"><a href="#">Lost your password?</a></p>*@
                                 </form>
                             </div>
@@ -67,26 +53,34 @@
                                     }
                                 }
                             <form action="/Home/RegisterAccount" method="post" class="aa-login-form">
-                                <label for="">Full Name<span>*</span></label>
-                                <input type="text" placeholder="Full Your Name" name="fullname" value="@Model.fullname">
-                                <label for="">Email<span>*</span></label>
-                                <input type="text" placeholder="Email" value="@Model.email" name="email">
-                                <hr class="m-4" />
-                                <label for="">Password<span>*</span></label>
-                                <input type="password" placeholder="Password" value="@Model.password" name="password">
-                                <hr class="m-4" />
-                                <label for="">Confirm Password<span>*</span></label>
-                                <input type="password" placeholder="Confirm Password" value="" name="confirmPass">
-                                <hr class="m-4" />
-                                <label for="">Personal</label>
-                                <input type="text" placeholder="" value="@Model.personal_detail" name="personal_detail">
-                                <hr class="m-4" />
-                                <label for="">Education<span></span></label>
-                                <input type="text" placeholder="" value="@Model.education_details" name="education_details">
-                                <hr class="m-4" />
-                                <label for="">Work experience<span></span></label>
-                                <input type="text" placeholder="" value="@Model.work_experience" name="work_experience">
-                                <hr class="m-4" />
+                                <div class="form-group">
+                                    <label for="">Full Name<span>*</span></label>
+                                    <input type="text" placeholder="Full Your Name" class="form-control" name="fullname" value="@Model.fullname">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Email<span>*</span></label>
+                                    <input type="text" placeholder="Email" class="form-control" value="@Model.email" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Password<span>*</span></label>
+                                    <input type="password" class="form-control" value="@Model.password" name="password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Confirm Password<span>*</span></label>
+                                    <input type="password" class="form-control"  value="" name="confirmPass">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Personal</label>
+                                    <input type="text" class="form-control" placeholder="Your Personal" value="@Model.personal_detail" name="personal_detail">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Education<span></span></label>
+                                    <input type="text" class="form-control" placeholder="Your Education" value="@Model.education_details" name="education_details">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Work experience<span></span></label>
+                                    <input type="text" class="form-control" placeholder="Your Work Experience" value="@Model.work_experience" name="work_experience">
+                                </div>
                                 @if (HttpContext.Current.Session["infoAccount2"] != null)
                                 {
                                     if (HttpContext.Current.Session["infoAccount2"].Equals("Please Number Phone Is Length 10"))
@@ -94,11 +88,12 @@
                                         <h4 style="color:red">@HttpContext.Current.Session["infoAccount2"]</h4>
                                     }
                                 }
-                                <label for="">Phone</label>
-                                <input type="number" placeholder="" value="@Model.phone" name="phone">
+                                <div class="form-group">
+                                    <label for="">Phone</label>
+                                    <input type="number" class="form-control" placeholder="Your Phone Number" value="@Model.phone" name="phone">
+                                </div>
                                 <br />
-                                <br />
-                                <button type="submit" class="btn btn-primary" style="">Register</button>
+                                <button type="submit" class="btn btn-primary" style="display: block; margin-left: auto;">Register</button>
                             </form>
                             </div>
                         </div>

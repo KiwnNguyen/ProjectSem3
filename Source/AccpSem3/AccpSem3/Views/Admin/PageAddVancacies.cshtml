@@ -30,21 +30,20 @@
                         <div class="mdc-layout-grid__inner">
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
-                                    <input class="mdc-text-field__input" name="name" id="text-field-hero-input" value="@Model.name">
+                                    <input class="mdc-text-field__input" id="name-field" name="name" value="@Model.name">
                                     <div class="mdc-notched-outline">
                                         <div class="mdc-notched-outline__leading"></div>
                                         <div class="mdc-notched-outline__notch">
-                                            <label for="text-field-hero-input" class="mdc-floating-label">Vancacies Name</label>
+                                            <label for="name-field" class="mdc-floating-label">Vacancies Name</label>
                                         </div>
                                         <div class="mdc-notched-outline__trailing"></div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
                                     <label for="" class="mdc-floating-label">Examine: </label>
-                                    <select class="mdc-select--focused" style="border-radius: 10px; width: 480px; text-align:center" id="exam" name="exam">
+                                    <select class="mdc-select--focused" style="border-radius: 10px; width: 500px; text-align:center" id="exam" name="exam">
                                         @foreach (AccpSem3.Models.ModeView.ExamineView item in ls)
                                         {
                                             <option value="@item.id">@item.title</option>
@@ -56,14 +55,14 @@
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
                                     <label for="" class="mdc-floating-label">DateLines: </label>
-                                    <input type="text" id="basic-default-datetime" class="mdi-camera-timer" name="dateline" data-flatpickr="datetime" value="@Model.dateline" style="border-radius:10px; width: 480px; text-align:center">
+                                    <input type="text" id="basic-default-datetime" class="mdi-camera-timer" name="dateline" data-flatpickr="datetime" value="@Model.dateline" style="border-radius:10px; width: 500px; text-align:center">
                                 </div>
 
                             </div>
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
                                     <label for="" class="mdc-floating-label">DepartMent: </label>
-                                    <select class="mdc-select--focused" style="border-radius: 10px; width: 480px; text-align:center" id="depart" name="depart">
+                                    <select class="mdc-select--focused" style="border-radius: 10px; width: 500px; text-align:center" id="depart" name="depart">
                                         @foreach (AccpSem3.Models.ModeView.DepartmentView item in ls1)
                                         {
                                             <option value="@item.id">@item.Dname</option>
@@ -74,20 +73,14 @@
                             </div>
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
-                                    <input class="mdc-text-field__input" id="text-field-hero-input" name="salary" value="@Model.salary">
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label for="text-field-hero-input" class="mdc-floating-label">Vancacies Salary</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
-                                    </div>
+                                    <label for="" class="mdc-floating-label">Vacancies Salary: </label>
+                                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="border-radius: 10px; width: 500px ; height: 40px; text-align:center" name="salary" value="@Model.salary">
                                 </div>
                             </div>
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
                                     <label for="" class="mdc-floating-label">Jobnature: </label>
-                                    <select name="jobnature" id="jobnature" class="mdc-select--focused" style="border-radius: 10px; width: 480px; text-align:center">
+                                    <select name="jobnature" id="jobnature" class="mdc-select--focused" style="border-radius: 10px; width: 500px; text-align:center">
                                         <option value="FULL TIME">Full Time</option>
                                         <option value="PART TIME">Part Time</option>
                                     </select>
@@ -96,7 +89,7 @@
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
                                     <label for="" class="mdc-floating-label">Featured: </label>
-                                    <select name="featured" id="featured" class="mdc-select--focused" style="border-radius: 10px; width: 480px; text-align:center">
+                                    <select name="featured" id="featured" class="mdc-select--focused" style="border-radius: 10px; width: 500px; text-align:center">
                                         <option value="1">Nổi bật</option>
                                         <option value="2">Không nổi bật</option>
                                     </select>
@@ -104,24 +97,16 @@
                             </div>
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                 <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
-                                    <input class="mdc-text-field__input" id="text-field-hero-input" name="quantity_emp" value="@Model.quantity_emp">
-                                    <div class="mdc-notched-outline">
-                                        <div class="mdc-notched-outline__leading"></div>
-                                        <div class="mdc-notched-outline__notch">
-                                            <label for="text-field-hero-input" class="mdc-floating-label">Number of recruitment</label>
-                                        </div>
-                                        <div class="mdc-notched-outline__trailing"></div>
-                                    </div>
+                                    <label for="" class="mdc-floating-label">Quantity of cursiment: </label>
+                                    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="border-radius: 10px; width: 500px ; height: 40px; text-align:center" name="quantity_emp" value="@Model.quantity_emp">
                                 </div>
                             </div>
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
-                                <div id="editor">
+                                <div id="editor" style="border-radius: 10px; width: 600px; text-align:center">
 
                                 </div>
                                 <input type="hidden" id="myData" name="myData" value="" />
                             </div>
-
-
                         </div><br />
                         <button type="submit" id="btnSave" class="btn btn-primary">Send</button>
                     </form>
