@@ -121,7 +121,6 @@ namespace AccpSem3.Controllers
 
                             string role1 = "USER";
                             HttpContext.Session["AccountName"] = logindetails.email;
-                            HttpContext.Session["ImageAccount"] = logindetails.images;
                             string id = logindetails.id.ToString();
                             HttpContext.Session["IdAccountUser"] = id;
                             HttpContext.Session["EmailAccountUser"] = logindetails.email;

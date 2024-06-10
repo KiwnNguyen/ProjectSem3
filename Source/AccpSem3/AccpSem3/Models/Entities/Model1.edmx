@@ -89,7 +89,6 @@
           <Property Name="status" Type="int" />
           <Property Name="created_at" Type="datetime" />
           <Property Name="updated_at" Type="datetime" />
-          <Property Name="images" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -376,7 +375,6 @@
           <Property Name="status" Type="Int32" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
           <Property Name="updated_at" Type="DateTime" Precision="3" />
-          <Property Name="images" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cadidates" Relationship="Self.FK__Cadidates__id_me__5FB337D6" FromRole="Member" ToRole="Cadidates" />
         </EntityType>
         <EntityType Name="Question">
@@ -672,7 +670,6 @@
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="created_at" ColumnName="created_at" />
                 <ScalarProperty Name="updated_at" ColumnName="updated_at" />
-                <ScalarProperty Name="images" ColumnName="images" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
