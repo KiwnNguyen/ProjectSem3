@@ -466,7 +466,7 @@ namespace AccpSem3.Controllers
                         string fullname = Request.Params["fullname"];
                         string from = "thewebster48@gmail.com";
                         string recipient = email;
-                        string subject = "Tôi gửi bạn tài khoản đăng nhập làm bài test";
+                        string subject = "We provide you with a account";
                         string body = "<!DOCTYPE html><html lang='en'><head>  " +
                         "<meta charset='UTF-8'> " +
                          "<meta name='viewport' content='width=device-width, initial-scale=1.0'>  " +
@@ -481,7 +481,7 @@ namespace AccpSem3.Controllers
                         "Responsive Email Template</td></tr>  " +
                         "<!-- Body -->                " +
                         "<tr><td class='body' style='padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;'>   Hello '" + fullname + "'! <br> Welcome arrive company us. That is company The Webster developmnent product Website in the word and Anyone also join project for project company us. </br> We need persons is expersive and skill active. Today We want test you of review scroce</td></tr><!-- Call to action Button --><tr><td style='padding: 0px 40px 0px 40px; text-align: center;'>" +
-                        "<!-- CTA Button --><table cellspacing='0' cellpadding='0' style='margin: auto;'>                                <tr>                                  <td align='center' style='background-color: #345C72; padding: 10px 20px; border-radius: 5px;'><a href='https://www.yourwebsite.com' target='_blank' style='color: #ffffff; text-decoration: none; font-weight: bold;'>Book a Free Consulatation</a></td></tr></table></td></tr><tr><td class='body' style='padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;'> We are provide account cadidate for Cadidate.</br><p> - <b>UserName: " + user + " </b>< </p> </br> <p> <b> - Password: " + pass + "</b></p></td></tr>  " +
+                        "<!-- CTA Button --><table cellspacing='0' cellpadding='0' style='margin: auto;'>                                <tr>                                  <td align='center' style='background-color: #345C72; padding: 10px 20px; border-radius: 5px;'><a href='http://localhost:8989/Home/index' target='_blank' style='color: #ffffff; text-decoration: none; font-weight: bold;'>Book a Free Consulatation</a></td></tr></table></td></tr><tr><td class='body' style='padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;'> We are provide account cadidate for Cadidate.</br><p> - <b>UserName: " + user + " </b></p> </br> <p> <b> - Password: " + pass + "</b></p></td></tr>  " +
                         " <!-- Footer --><tr><td class='footer' style='background-color: #333333; padding: 40px; text-align: center; color: white; font-size: 14px;'>Copyright &copy; 2024 | Your brand name</td></tr></table></td> </tr>  " +
                         "  </table>" +
                         "</body></html>";
@@ -828,7 +828,7 @@ namespace AccpSem3.Controllers
                          "<meta name='viewport' content='width=device-width, initial-scale=1.0'>  " +
                          "<title>Responsive Email Template</title></head>" +
                          "<link rel='preconnect' href=''><link rel='preconnect' href='' crossorigin><link href='0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' rel='stylesheet'>" +
-                         "<style>  @media screen and (max-width: 600px) {    .content {        width: 100% !important;        display: block !important;padding: 10px !important;    }.header, .body, .footer {padding: 20px !important;   } }</style>" +
+                         "<style>  @media screen and (max-width: 600px) {.content {width: 100% !important;        display: block !important;padding: 10px !important;    }.header, .body, .footer {padding: 20px !important;   } }</style>" +
                         "<body style='font-family: 'Poppins', Arial, sans-serif'>   " +
                         "<table width='100%' border='0' cellspacing='0' cellpadding='0'>  " +
                         "<tr><td align='center' style='padding: 20px;'>    " +
@@ -837,7 +837,7 @@ namespace AccpSem3.Controllers
                         "Responsive Email Template</td></tr>  " +
                         "<!-- Body -->                " +
                         "<tr><td class='body' style='padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;'>   Hello '" + nameCandi + "'! <br>Hi, You have invate interview for Company Us</td></tr><!-- Call to action Button --><tr><td style='padding: 0px 40px 0px 40px; text-align: center;'>" +
-                        "<!-- CTA Button --><table cellspacing='0' cellpadding='0' style='margin: auto;'>                                <tr>                                  <td align='center' style='background-color: #345C72; padding: 10px 20px; border-radius: 5px;'><a href='https://www.yourwebsite.com' target='_blank' style='color: #ffffff; text-decoration: none; font-weight: bold;'>Book a Free Consulatation</a></td></tr></table></td></tr><tr><td class='body' style='padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;'> This location Street Texas, you meet us room 201A.</br><p> - <b>Start Time: " + start_Time + " </b>< </p> </br> <p> <b> - End Time: " + end_Time + "</b></br>See you late</p></td></tr>  " +
+                        "<!-- CTA Button --><table cellspacing='0' cellpadding='0' style='margin: auto;'>                                <tr>                                  <td align='center' style='background-color: #345C72; padding: 10px 20px; border-radius: 5px;'><a href='http://localhost:8989/Home/index' target='_blank' style='color: #ffffff; text-decoration: none; font-weight: bold;'>Book a Free Consulatation</a></td></tr></table></td></tr><tr><td class='body' style='padding: 40px; text-align: left; font-size: 16px; line-height: 1.6;'> This location Street Texas, you meet us room 201A.</br><p> - <b>Start Time: " + start_Time + " </b></p></br><p><b> - End Time: " + end_Time + "</b></br></p></td><td>See you late</td></tr>  " +
                         " <!-- Footer --><tr><td class='footer' style='background-color: #333333; padding: 40px; text-align: center; color: white; font-size: 14px;'>Copyright &copy; 2024 | Your brand name</td></tr></table></td> </tr>  " +
                         "  </table>" +
                         "</body></html>";
