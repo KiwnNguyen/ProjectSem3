@@ -28,7 +28,7 @@ namespace AccpSem3.Models.Repository
             try
             {
                 dbSem3Entities entities = new dbSem3Entities();
-                var q = entities.Members.Select(d => new MemberView { id = d.id, fullname = d.fullname, email = d.email, password = d.password, status = d.status, created_at = d.created_at, updated_at = d.updated_at, images = d.images }).ToList();
+                var q = entities.Members.Select(d => new MemberView { id = d.id, fullname = d.fullname, email = d.email, password = d.password, status = d.status, created_at = d.created_at, updated_at = d.updated_at }).ToList();
                 return q;
             }
             catch (Exception e)
@@ -63,7 +63,6 @@ namespace AccpSem3.Models.Repository
                             updated_at = model.updated_at,
                             phone = model.phone,
                             cv = model.cv,
-                            images = model.images,
                         };
                         entities.Members.Add(AddUser);
                         entities.SaveChanges();
@@ -89,7 +88,7 @@ namespace AccpSem3.Models.Repository
                     var result = entities.Members.Find(model.id);
                     if (result != null)
                     {
-                        result.images = model.images;
+                        
                         entities.SaveChanges();
                     }
                 }
@@ -113,7 +112,6 @@ namespace AccpSem3.Models.Repository
                     ).FirstOrDefault();
                 //Truyền giá trị từ class User sang class UserView
                 MemberView userViewList = new MemberView();
-                userViewList.images = user.images;
                 return userViewList;
             }
             catch (Exception e)
